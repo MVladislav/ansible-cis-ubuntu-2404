@@ -538,9 +538,9 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 3.3.9     | Ensure suspicious packets are logged (Automated)                                                 | 🟢  |     |     |
 | 3.3.10    | Ensure tcp syn cookies is enabled (Automated)                                                    | 🟢  |     |     |
 | 3.3.11    | Ensure ipv6 router advertisements are not accepted (Automated)                                   | 🟢  |     |     |
-| 4         | **Host Based Firewall**                                                                          |     | 🟡  |     |
-| 4.1       | **Configure a single firewall utility**                                                          |     |     | 🔴  |
-| 4.1.1     | Ensure a single firewall configuration utility is in use (Automated)                             |     |     | 🔴  |
+| 4         | **Host Based Firewall**                                                                          | 🟢  |     |     |
+| 4.1       | **Configure a single firewall utility**                                                          | 🟢  |     |     |
+| 4.1.1     | Ensure a single firewall configuration utility is in use (Automated)                             | 🟢  |     |     |
 | 4.2       | **Configure UncomplicatedFirewall**                                                              | 🟢  |     |     |
 | 4.2.1     | Ensure ufw is installed (Automated)                                                              | 🟢  |     |     |
 | 4.2.2     | Ensure iptables-persistent is not installed with ufw (Automated)                                 | 🟢  |     |     |
@@ -648,11 +648,11 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 5.4.1.4   | Ensure strong password hashing algorithm is configured (Automated)                               | 🟢  |     |     |
 | 5.4.1.5   | Ensure inactive password lock is configured (Automated)                                          |     | 🟡  |     |
 | 5.4.1.6   | Ensure all users last password change date is in the past (Automated)                            |     | 🟡  |     |
-| 5.4.2     | **Configure root and system accounts and environment**                                           |     | 🟡  |     |
+| 5.4.2     | **Configure root and system accounts and environment**                                           | 🟢  |     |     |
 | 5.4.2.1   | Ensure root is the only UID 0 account (Automated)                                                | 🟢  |     |     |
 | 5.4.2.2   | Ensure root is the only GID 0 account (Automated)                                                | 🟢  |     |     |
 | 5.4.2.3   | Ensure group root is the only GID 0 group (Automated)                                            | 🟢  |     |     |
-| 5.4.2.4   | Ensure root account access is controlled (Automated)                                             |     |     | 🔴  |
+| 5.4.2.4   | Ensure root account access is controlled (Automated)                                             | 🟢  |     |     |
 | 5.4.2.5   | Ensure root path integrity (Automated)                                                           |     | 🟡  |     |
 | 5.4.2.6   | Ensure root user umask is configured (Automated)                                                 | 🟢  |     |     |
 | 5.4.2.7   | Ensure system accounts do not have a valid login shell (Automated)                               |     | 🟡  |     |

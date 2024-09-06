@@ -156,7 +156,7 @@ cis_ubuntu2404_rule_3_3_9: true
 cis_ubuntu2404_rule_3_3_10: true
 cis_ubuntu2404_rule_3_3_11: true
 ## SECTION 4 rules
-cis_ubuntu2404_rule_4_1_1: true # NOTE: not implemented, as below rules will set it as needed
+cis_ubuntu2404_rule_4_1_1: true # NOTE: implicit in rules below
 cis_ubuntu2404_rule_4_2_1: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
 cis_ubuntu2404_rule_4_2_2: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
 cis_ubuntu2404_rule_4_2_3: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
@@ -252,6 +252,7 @@ cis_ubuntu2404_rule_5_4_1_6: true
 cis_ubuntu2404_rule_5_4_2_1: true
 cis_ubuntu2404_rule_5_4_2_2: true
 cis_ubuntu2404_rule_5_4_2_3: true
+cis_ubuntu2404_rule_5_4_2_4: true
 cis_ubuntu2404_rule_5_4_2_5: true
 cis_ubuntu2404_rule_5_4_2_6: true
 cis_ubuntu2404_rule_5_4_2_7: true

@@ -1449,7 +1449,16 @@
     - server_l1
     - workstation_l1
 
-# - name: "SECTION5 | 5.4.2.4 | Ensure root account access is controlled"
+- name: "SECTION5 | 5.4.2.4 | Ensure root account access is controlled"
+  ansible.builtin.user:
+    name: root
+    password_lock: true
+  when:
+    - cis_ubuntu2404_rule_5_4_2_4
+  tags:
+    - rule_5_4_2
+    - server_l1
+    - workstation_l1
 
 - name: "SECTION5 | 5.4.2.5 | Ensure root path integrity"
   when:
