@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: MVladislav
+  description: Ansible role for config CIS recommendation for ubuntu 24.04
+  company: none
+  license: MIT
+  min_ansible_version: "2.16"
+  role_name: cis_ubuntu_2404
+  namespace: mvladislav
+
+  platforms:
+    - name: Ubuntu
+
+  galaxy_tags:
+    - cis
+    - security
+    - hardening
+    - ubuntu
+
+dependencies: []

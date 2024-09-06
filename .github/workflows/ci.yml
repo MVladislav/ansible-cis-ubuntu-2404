@@ -1,0 +1,45 @@
+---
+name: Ansible Molecule Test
+
+on:
+  push:
+    # branches: [main, develop]
+    tags:
+      - "*"
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+jobs:
+  test:
+    name: Molecule Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [{ version: "3.11", param: "--break-system-packages" }]
+        molecule-os: ["ubuntu2404"]
+
+    steps:
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v4
+
+      # https://github.com/actions/setup-python
+      - name: Set up Python ${{ matrix.python-version.version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version.version }}
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip ${{ matrix.python-version.param }}
+          python3 -m pip install -r requirements.txt ${{ matrix.python-version.param }}
+
+      - name: Test with molecule
+        run: molecule test -s ${{ matrix.molecule-os }}
+        env:
+          PY_COLOR: "1"
+          ANSIBLE_FORCE_COLOR: "1"

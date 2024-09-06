@@ -1,0 +1,1073 @@
+---
+# tasks file for ansible-cis-ubuntu-2404
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.1.1.1 | Ensure cramfs kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_1
+  tags:
+    - rule_1_1_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.1.1.1 | Ensure cramfs kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install cramfs(\s|$)'
+          line: "install cramfs /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist cramfs$"
+          line: "blacklist cramfs"
+    - name: >
+        SECTION1 | 1.1.1.1 | Ensure cramfs kernel module is not available | unloading module
+      community.general.modprobe:
+        name: cramfs
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+- name: "SECTION1 | 1.1.1.2 | Ensure freevxfs kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_2
+  tags:
+    - rule_1_1_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.1.1.2 | Ensure freevxfs kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install freevxfs(\s|$)'
+          line: "install freevxfs /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist freevxfs$"
+          line: "blacklist freevxfs"
+    - name: >
+        SECTION1 | 1.1.1.2 | Ensure freevxfs kernel module is not available | unloading module
+      community.general.modprobe:
+        name: freevxfs
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+- name: "SECTION1 | 1.1.1.3 | Ensure hfs kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_3
+  tags:
+    - rule_1_1_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.1.1.3 | Ensure hfs kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install hfs(\s|$)'
+          line: "install hfs /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist hfs$"
+          line: "blacklist hfs"
+    - name: >
+        SECTION1 | 1.1.1.3 | Ensure hfs kernel module is not available | unloading module
+      community.general.modprobe:
+        name: hfs
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+- name: "SECTION1 | 1.1.1.4 | Ensure hfsplus kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_4
+  tags:
+    - rule_1_1_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.1.1.4 | Ensure hfsplus kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install hfsplus(\s|$)'
+          line: "install hfsplus /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist hfsplus$"
+          line: "blacklist hfsplus"
+    - name: >
+        SECTION1 | 1.1.1.4 | Ensure hfsplus kernel module is not available | unloading module
+      community.general.modprobe:
+        name: hfsplus
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+- name: "SECTION1 | 1.1.1.5 | Ensure jffs2 kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_5
+  tags:
+    - rule_1_1_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.1.1.5 | Ensure jffs2 kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install jffs2(\s|$)'
+          line: "install jffs2 /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist jffs2$"
+          line: "blacklist jffs2"
+    - name: >
+        SECTION1 | 1.1.1.5 | Ensure jffs2 kernel module is not available | unloading module
+      community.general.modprobe:
+        name: jffs2
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+- name: "SECTION1 | 1.1.1.6 | Ensure overlayfs kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_6
+  tags:
+    - rule_1_1_1
+    - server_l2
+    - workstation_l2
+  block:
+    - name: >
+        SECTION1 | 1.1.1.6 | Ensure overlayfs kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install overlayfs(\s|$)'
+          line: "install overlayfs /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist overlayfs$"
+          line: "blacklist overlayfs"
+
+- name: "SECTION1 | 1.1.1.7 | Ensure squashfs kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_7
+  tags:
+    - rule_1_1_1
+    - server_l2
+    - workstation_l2
+  block:
+    - name: >
+        SECTION1 | 1.1.1.7 | Ensure squashfs kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install squashfs(\s|$)'
+          line: "install squashfs /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist squashfs$"
+          line: "blacklist squashfs"
+
+- name: "SECTION1 | 1.1.1.8 | Ensure udf kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_8
+  tags:
+    - rule_1_1_1
+    - server_l2
+    - workstation_l2
+  block:
+    - name: >
+        SECTION1 | 1.1.1.8 | Ensure udf kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install udf(\s|$)'
+          line: "install udf /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist udf$"
+          line: "blacklist udf"
+    - name: >
+        SECTION1 | 1.1.1.8 | Ensure udf kernel module is not available | unloading module
+      community.general.modprobe:
+        name: udf
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+- name: "SECTION1 | 1.1.1.9 | Ensure usb-storage kernel module is not available"
+  when:
+    - cis_ubuntu2404_rule_1_1_1_9
+  tags:
+    - rule_1_1_1
+    - server_l2
+    - workstation_l2
+  block:
+    - name: >
+        SECTION1 | 1.1.1.9 | Ensure usb-storage kernel module is not available | setting module and deny listing
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      with_items:
+        - reg: '{{ cis_ubuntu2404_regex_base_search }}install usb-storage(\s|$)'
+          line: "install usb-storage /bin/false"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist usb-storage$"
+          line: "blacklist usb-storage"
+    - name: >
+        SECTION1 | 1.1.1.9 | Ensure usb-storage kernel module is not available | unloading module
+      community.general.modprobe:
+        name: usb-storage
+        state: absent
+      when: ansible_virtualization_type != "docker"
+
+# ------------------------------------------------------------------------------
+
+- name: |
+    SECTION1 | 1.1.2.1   | Configure /tmp
+    SECTION1 | 1.1.2.1.1 | Ensure /tmp is a separate partition
+    SECTION1 | 1.1.2.1.2 | Ensure nodev option set on /tmp partition
+    SECTION1 | 1.1.2.1.3 | Ensure nosuid option set on /tmp partition
+    SECTION1 | 1.1.2.1.4 | Ensure noexec option set on /tmp partition
+  ansible.builtin.template:
+    src: system/tmp.mount.j2
+    dest: /etc/systemd/system/tmp.mount
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  notify: Systemd restart and enable tmp.mount
+  when:
+    - cis_ubuntu2404_rule_1_1_2_1
+  tags:
+    - rule_1_1_2_1
+    - server_l1
+    - workstation_l1
+
+# ------------------------------------------------------------------------------
+
+- name: |
+    SECTION1 | 1.1.2.2   | Configure /dev/shm
+    SECTION1 | 1.1.2.2.1 | Ensure /dev/shm is a separate partition
+    SECTION1 | 1.1.2.2.2 | Ensure nodev option set on /dev/shm partition
+    SECTION1 | 1.1.2.2.3 | Ensure nosuid option set on /dev/shm partition
+    SECTION1 | 1.1.2.2.4 | Ensure noexec option set on /dev/shm partition
+  ansible.posix.mount:
+    name: /dev/shm
+    src: tmpfs
+    state: mounted
+    fstype: tmpfs
+    opts: "defaults,rw,relatime,size=2G,nodev,nosuid,noexec"
+  when:
+    - cis_ubuntu2404_rule_1_1_2_2
+  tags:
+    - rule_1_1_2_2
+    - server_l1
+    - workstation_l1
+
+# ------------------------------------------------------------------------------
+
+# - name: |
+#     SECTION1 | 1.1.2.3   | Configure /home
+#     SECTION1 | 1.1.2.3.1 | Ensure separate partition exists for /home
+#     SECTION1 | 1.1.2.3.2 | Ensure nodev option set on /home partition
+#     SECTION1 | 1.1.2.3.3 | Ensure nosuid option set on /home partition
+#   ansible.builtin.template:
+#     src: system/home.mount.j2
+#     dest: /etc/systemd/system/home.mount
+#     owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+#     group: "{{ cis_ubuntu2404_section1_group_default }}"
+#     mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+#   notify:
+#     - systemd restart and enable home.mount
+#   when:
+#     - cis_ubuntu2404_rule_1_1_2_3
+#   tags:
+#     - rule_1_1_2_3
+#     - server_l2
+#     - workstation_l2
+
+# ------------------------------------------------------------------------------
+
+# - name: |
+#     SECTION1 | 1.1.2.4   | Configure /var
+#     SECTION1 | 1.1.2.4.1 | Ensure separate partition exists for /var
+#     SECTION1 | 1.1.2.4.2 | Ensure nodev option set on /var partition
+#     SECTION1 | 1.1.2.4.3 | Ensure nosuid option set on /var partition
+#   ansible.builtin.template:
+#     src: system/var.mount.j2
+#     dest: /etc/systemd/system/var.mount
+#     owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+#     group: "{{ cis_ubuntu2404_section1_group_default }}"
+#     mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+#   notify:
+#     - systemd restart and enable var.mount
+#   when:
+#     - cis_ubuntu2404_rule_1_1_2_4
+#   tags:
+#     - rule_1_1_2_4
+#     - server_l2
+#     - workstation_l2
+
+# # ------------------------------------------------------------------------------
+
+# - name: |
+#     SECTION1 | 1.1.2.5   | Configure /var/tmp
+#     SECTION1 | 1.1.2.5.1 | Ensure separate partition exists for /var/tmp
+#     SECTION1 | 1.1.2.5.2 | Ensure nodev option set on /var/tmp partition
+#     SECTION1 | 1.1.2.5.3 | Ensure nosuid option set on /var/tmp partition
+#     SECTION1 | 1.1.2.5.4 | Ensure noexec option set on /var/tmp partition
+#   ansible.builtin.template:
+#     src: system/var.tmp.mount.j2
+#     dest: /etc/systemd/system/var.tmp.mount
+#     owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+#     group: "{{ cis_ubuntu2404_section1_group_default }}"
+#     mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+#   notify:
+#     - systemd restart and enable var.tmp.mount
+#   when:
+#     - cis_ubuntu2404_rule_1_1_2_5
+#   tags:
+#     - rule_1_1_2_5
+#     - server_l2
+#     - workstation_l2
+
+# # ------------------------------------------------------------------------------
+
+# - name: |
+#     SECTION1 | 1.1.2.6   | Configure /var/log
+#     SECTION1 | 1.1.2.6.1 | Ensure separate partition exists for /var/log
+#     SECTION1 | 1.1.2.6.2 | Ensure nodev option set on /var/log partition
+#     SECTION1 | 1.1.2.6.3 | Ensure nosuid option set on /var/log partition
+#     SECTION1 | 1.1.2.6.4 | Ensure noexec option set on /var/log partition
+#   ansible.builtin.template:
+#     src: system/var.log.mount.j2
+#     dest: /etc/systemd/system/var.log.mount
+#     owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+#     group: "{{ cis_ubuntu2404_section1_group_default }}"
+#     mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+#   notify:
+#     - systemd restart and enable var.log.mount
+#   when:
+#     - cis_ubuntu2404_rule_1_1_2_6
+#   tags:
+#     - rule_1_1_2_6
+#     - server_l2
+#     - workstation_l2
+
+# # ------------------------------------------------------------------------------
+
+# - name: |
+#     SECTION1 | 1.1.2.7 | Configure /var/log/audit
+#     SECTION1 | 1.1.2.7.1 | Ensure separate partition exists for /var/log/audit
+#     SECTION1 | 1.1.2.7.2 | Ensure nodev option set on /var/log/audit partition
+#     SECTION1 | 1.1.2.7.3 | Ensure nosuid option set on /var/log/audit partition
+#     SECTION1 | 1.1.2.7.4 | Ensure noexec option set on /var/log/audit partition
+#   ansible.builtin.template:
+#     src: system/var.log.audit.mount.j2
+#     dest: /etc/systemd/system/var.log.audit.mount
+#     owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+#     group: "{{ cis_ubuntu2404_section1_group_default }}"
+#     mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+#   notify:
+#     - systemd restart and enable var.log.audit.mount
+#   when:
+#     - cis_ubuntu2404_rule_1_1_2_7
+#   tags:
+#     - rule_1_1_2_7
+#     - server_l2
+#     - workstation_l2
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.2.1.1 | Ensure GPG keys are configured"
+  when:
+    - cis_ubuntu2404_rule_1_2_1_1
+  tags:
+    - rule_1_2_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: "SECTION1 | 1.2.1.1 | Ensure GPG keys are configured | get info"
+      ansible.builtin.shell: apt-key list
+      args:
+        executable: "{{ cis_ubuntu2404_shell_executable }}"
+      register: cis_ubuntu2404_apt_key_list
+      changed_when: false
+      failed_when: false
+      check_mode: false
+    - name: "SECTION1 | 1.2.1.1 | Ensure GPG keys are configured | print info"
+      ansible.builtin.debug:
+        msg: |
+          #############################################################################################
+          Ensure GPG keys are configured.
+          #############################################################################################
+          {{ cis_ubuntu2404_apt_key_list.stdout_lines | join(cis_ubuntu2404_print_info_join_by) }}
+          #############################################################################################
+      when:
+        - cis_ubuntu2404_apt_key_list.stdout_lines is defined
+        - cis_ubuntu2404_apt_key_list.stdout_lines | length > 0
+
+- name: "SECTION1 | 1.2.1.2 | Ensure package manager repositories are configured"
+  when:
+    - cis_ubuntu2404_rule_1_2_1_2
+  tags:
+    - rule_1_2_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: "SECTION1 | 1.2.1.2 | Ensure package manager repositories are configured | get info"
+      ansible.builtin.shell: apt-cache policy
+      args:
+        executable: "{{ cis_ubuntu2404_shell_executable }}"
+      register: cis_ubuntu2404_apt_key_list
+      changed_when: false
+      failed_when: false
+      check_mode: false
+    - name: "SECTION1 | 1.2.1.2 | Ensure package manager repositories are configured | print info"
+      ansible.builtin.debug:
+        msg: |
+          #############################################################################################
+          Ensure package manager repositories are configured.
+          #############################################################################################
+          {{ cis_ubuntu2404_apt_key_list.stdout_lines | join(cis_ubuntu2404_print_info_join_by) }}
+          #############################################################################################
+      when:
+        - cis_ubuntu2404_apt_key_list.stdout_lines is defined
+        - cis_ubuntu2404_apt_key_list.stdout_lines | length > 0
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.2.2.1 | Ensure updates, patches, and additional security software are installed"
+  ansible.builtin.apt:
+    upgrade: dist
+    force_apt_get: true
+  when:
+    - cis_ubuntu2404_rule_1_2_2_1
+  tags:
+    - rule_1_2_2
+    - server_l1
+    - workstation_l1
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.3.1.1 | Ensure AppArmor is installed"
+  ansible.builtin.apt:
+    name:
+      - apparmor
+      # 'apparmor-utils' installs 'aa-enforce'
+      - apparmor-utils
+    state: present
+    force_apt_get: true
+  notify: Restart apparmor
+  when:
+    - cis_ubuntu2404_rule_1_3_1_1
+  tags:
+    - rule_1_3_1
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration"
+  when:
+    - cis_ubuntu2404_rule_1_3_1_2
+  tags:
+    - rule_1_3_1
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration | grub add
+      ansible.builtin.replace:
+        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX=\"(?!.*apparmor=)[^\"]*)(\".*)'
+        replace: '\1 apparmor=1\2'
+      notify: Update-grub
+    - name: >
+        SECTION1 | 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration | grub replace
+      ansible.builtin.replace:
+        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        regexp: 'apparmor=\d+'
+        replace: "apparmor=1"
+      notify: Update-grub
+    - name: >
+        SECTION1 | 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration | grub add
+      ansible.builtin.replace:
+        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        regexp: '^(GRUB_CMDLINE_LINUX=\"(?!.*security=)[^\"]*)(\".*)'
+        replace: '\1 security=apparmor\2'
+      notify: Update-grub
+    - name: >
+        SECTION1 | 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration | grub replace
+      ansible.builtin.replace:
+        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        regexp: 'security=\w+'
+        replace: "security=apparmor"
+      notify: Update-grub
+
+- name: "SECTION1 | 1.3.1.3 | Ensure all AppArmor Profiles are in enforce or complain mode"
+  ansible.builtin.command: /usr/sbin/aa-complain /etc/apparmor.d/*
+  changed_when: false
+  notify: Restart apparmor
+  when:
+    - cis_ubuntu2404_rule_1_3_1_3
+  tags:
+    - rule_1_3_1
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.3.1.4 | Ensure all AppArmor Profiles are enforcing"
+  ansible.builtin.command: /usr/sbin/aa-enforce /etc/apparmor.d/*
+  changed_when: false
+  notify: Restart apparmor
+  when:
+    - cis_ubuntu2404_rule_1_3_1_4
+  tags:
+    - rule_1_3_1
+    - server_l2
+    - workstation_l2
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.4.1 | Ensure bootloader password is set"
+  when:
+    - cis_ubuntu2404_set_boot_pass
+    - cis_ubuntu2404_rule_1_4_1
+  tags:
+    - rule_1_4
+    - server_l1
+    - workstation_l1
+    - molecule-idempotence-notest
+  block:
+    - name: "SECTION1 | 1.4.1 | Ensure bootloader password is set | generate password"
+      ansible.builtin.shell: |
+        set -o pipefail &&
+          if [ '{{ cis_ubuntu2404_bootloader_password }}' == 'random' ]; then
+            PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c12)
+          else
+            PASSWORD='{{ cis_ubuntu2404_bootloader_password }}'
+          fi
+        echo -e "$PASSWORD\n$PASSWORD" | grub-mkpasswd-pbkdf2 --iteration-count=600000 --salt=64 | awk '/grub.pbkdf/{print$NF}'
+      register: cis_grub_bootloader_password
+      args:
+        executable: "{{ cis_ubuntu2404_shell_executable }}"
+      changed_when: false
+    - name: "SECTION1 | 1.4.1 | Ensure bootloader password is set | generate config"
+      ansible.builtin.copy:
+        dest: /etc/grub.d/00_password
+        content: "cat << EOF\nexec tail -n +2 $0\nset superusers=\"root\"\npassword_pbkdf2 root {{ cis_grub_bootloader_password.stdout }}\nEOF"
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_etc_grub_d }}"
+      notify: Generate new grub config
+      when:
+        - cis_grub_bootloader_password is defined
+        - cis_grub_bootloader_password.stdout is defined
+        - cis_grub_bootloader_password.stdout | length > 0
+    - name: "SECTION1 | 1.4.1 | Ensure bootloader password is set | disable password for system boot"
+      ansible.builtin.replace:
+        path: /etc/grub.d/10_linux
+        regexp: '--class os"'
+        replace: '--class os --unrestricted"'
+      notify: Generate new grub config
+      when:
+        - cis_ubuntu2404_disable_boot_pass
+
+- name: "SECTION1 | 1.4.2 | Ensure access to bootloader config is configured"
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_boot_grub }}"
+  with_items:
+    - path: /boot/grub/grub.cfg
+      check: "{{ cis_grub_cfg.stat.exists }}"
+    - path: /boot/grub/grub.conf
+      check: "{{ cis_grub_conf.stat.exists }}"
+    - path: /boot/grub/menu.lst
+      check: "{{ cis_menu_lst.stat.exists }}"
+  when:
+    - cis_ubuntu2404_rule_1_4_2
+    - item.check | bool
+  tags:
+    - rule_1_4
+    - server_l1
+    - workstation_l1
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.5.1 | Ensure address space layout randomization is enabled"
+  ansible.posix.sysctl:
+    name: kernel.randomize_va_space
+    value: "2"
+    sysctl_file: "{{ cis_ubuntu2404_sysctl_file_path }}"
+    sysctl_set: true
+    state: present
+    reload: true
+    ignoreerrors: true
+  when:
+    - cis_ubuntu2404_rule_1_5_1
+  tags:
+    - rule_1_5
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.5.2 | Ensure ptrace_scope is restricted"
+  ansible.posix.sysctl:
+    name: kernel.yama.ptrace_scope
+    value: "1"
+    sysctl_file: "{{ cis_ubuntu2404_sysctl_file_path }}"
+    sysctl_set: true
+    state: present
+    reload: true
+    ignoreerrors: true
+  when:
+    - cis_ubuntu2404_rule_1_5_2
+  tags:
+    - rule_1_5
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.5.3 | Ensure core dumps are restricted"
+  when:
+    - cis_ubuntu2404_rule_1_5_3
+  tags:
+    - rule_1_5
+    - server_l1
+    - workstation_l1
+  block:
+    - name: >
+        SECTION1 | 1.5.3 | Ensure core dumps are restricted | set fs.suid_dumpable
+      ansible.posix.sysctl:
+        name: fs.suid_dumpable
+        value: "0"
+        sysctl_file: "{{ cis_ubuntu2404_sysctl_file_path }}"
+        sysctl_set: true
+        state: present
+        reload: true
+        ignoreerrors: true
+    - name: >
+        SECTION1 | 1.5.3 | Ensure core dumps are restricted | install systemd-coredump
+      ansible.builtin.apt:
+        name: systemd-coredump
+        state: present
+        force_apt_get: true
+      notify: Restart systemd-coredump
+    - name: >
+        SECTION1 | 1.5.3 | Ensure core dumps are restricted | ensure hard core 0 is set
+      ansible.builtin.lineinfile:
+        dest: /etc/security/limits.conf
+        regexp: '{{ cis_ubuntu2404_regex_base_search }}\*\s+hard\s+core\s+[0-9]+'
+        line: "*                hard    core            0"
+        state: present
+        create: true
+        insertbefore: "# End of file"
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      notify: Restart systemd-coredump
+    - name: >
+        SECTION1 | 1.5.3 | Ensure core dumps are restricted | set coredump.conf
+      ansible.builtin.lineinfile:
+        dest: /etc/systemd/coredump.conf
+        regexp: "{{ item.reg }}"
+        line: "{{ item.line }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      notify: Restart systemd-coredump
+      with_items:
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}Storage{{ cis_ubuntu2404_regex_base_search_equals }}"
+          line: "Storage=none"
+        - reg: "{{ cis_ubuntu2404_regex_base_search }}ProcessSizeMax{{ cis_ubuntu2404_regex_base_search_equals }}"
+          line: "ProcessSizeMax=0"
+
+- name: "SECTION1 | 1.5.4 | Ensure prelink is not installed"
+  when:
+    - package_installed_prelink.rc == 0
+    - cis_ubuntu2404_rule_1_5_4
+  tags:
+    - rule_1_5
+    - server_l1
+    - workstation_l1
+  block:
+    - name: "SECTION1 | 1.5.4 | Ensure prelink is not installed | restore binaries to normal"
+      ansible.builtin.command: prelink -ua
+      changed_when: false
+    - name: "SECTION1 | 1.5.4 | Ensure prelink is not installed | uninstall"
+      ansible.builtin.apt:
+        name: prelink
+        state: absent
+        purge: true
+
+- name: "SECTION1 | 1.5.5 | Ensure Automatic Error Reporting is not enabled"
+  when:
+    - service_status_apport.stdout == "loaded"
+    - cis_ubuntu2404_rule_1_5_5
+  tags:
+    - rule_1_5
+    - server_l1
+    - workstation_l2
+  block:
+    - name: >
+        SECTION1 | 1.5.5 | Ensure Automatic Error Reporting is not enabled | add or edit the enabled parameter to equal 0
+      ansible.builtin.lineinfile:
+        dest: /etc/default/apport
+        regexp: "{{ cis_ubuntu2404_regex_base_search }}enabled{{ cis_ubuntu2404_regex_base_search_equals }}"
+        line: "enabled=0"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+    - name: >
+        SECTION1 | 1.5.5 | Ensure Automatic Error Reporting is not enabled | stop and disable service
+      ansible.builtin.systemd_service:
+        name: apport
+        daemon_reload: true
+        enabled: false
+        masked: true
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.6.1 | Ensure message of the day is configured properly"
+  ansible.builtin.copy:
+    content: |
+      {{ cis_ubuntu2404_warning_banner }}
+
+    dest: /etc/motd
+    mode: "{{ cis_ubuntu2404_section1_mode_etc_issue_motd }}"
+  when:
+    - cis_ubuntu2404_rule_1_6_1
+  tags:
+    - rule_1_6
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.6.2 | Ensure local login warning banner is configured properly"
+  ansible.builtin.copy:
+    content: |
+      {{ cis_ubuntu2404_warning_banner }}
+
+    dest: /etc/issue
+    mode: "{{ cis_ubuntu2404_section1_mode_etc_issue_motd }}"
+  when:
+    - cis_ubuntu2404_rule_1_6_2
+  tags:
+    - rule_1_6
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.6.3 | Ensure remote login warning banner is configured properly"
+  ansible.builtin.copy:
+    content: |
+      {{ cis_ubuntu2404_warning_banner }}
+
+    dest: /etc/issue.net
+    mode: "{{ cis_ubuntu2404_section1_mode_etc_issue_motd }}"
+  when:
+    - cis_ubuntu2404_rule_1_6_3
+  tags:
+    - rule_1_6
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.6.4 | Ensure permissions on /etc/motd are configured"
+  ansible.builtin.file:
+    dest: /etc/motd
+    state: file
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_etc_issue_motd }}"
+  when:
+    - cis_ubuntu2404_rule_1_6_4
+  tags:
+    - rule_1_6
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.6.5 | Ensure permissions on /etc/issue are configured"
+  ansible.builtin.file:
+    dest: /etc/issue
+    state: file
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_etc_issue_motd }}"
+  when:
+    - cis_ubuntu2404_rule_1_6_5
+  tags:
+    - rule_1_6
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.6.6 | Ensure permissions on /etc/issue.net are configured"
+  ansible.builtin.file:
+    dest: /etc/issue.net
+    state: file
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_etc_issue_motd }}"
+  when:
+    - cis_ubuntu2404_rule_1_6_6
+  tags:
+    - rule_1_6
+    - server_l1
+    - workstation_l1
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION1 | 1.7.1 | Ensure GNOME Display Manager is removed"
+  ansible.builtin.apt:
+    name: gdm3
+    state: absent
+    purge: true
+  when:
+    - not cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_1
+  tags:
+    - rule_1_7
+    - server_l2
+
+- name: "SECTION1 | 1.7.2-9 | create folder under '/etc/dconf/db/*', for upcoming tasks"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+  block:
+    - name: "SECTION1 | 1.7.2-3 | create folder /etc/dconf/db/gdm.d"
+      ansible.builtin.file:
+        path: /etc/dconf/db/gdm.d
+        state: directory
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "0755"
+    - name: "SECTION1 | 1.7.4/6/8 | create folder /etc/dconf/db/local.d"
+      ansible.builtin.file:
+        path: /etc/dconf/db/local.d
+        state: directory
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "0755"
+    - name: "SECTION1 | 1.7.5/7/9 | create folder /etc/dconf/db/local.d/locks"
+      ansible.builtin.file:
+        path: /etc/dconf/db/local.d/locks
+        state: directory
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "0755"
+
+- name: "SECTION1 | 1.7.2 | Ensure GDM login banner is configured"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_2
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+  block:
+    - name: "SECTION1 | 1.7.2 | Ensure GDM login banner is configured | file gdm"
+      ansible.builtin.template:
+        src: gdm/profile-gdm.j2
+        dest: /etc/dconf/profile/gdm
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+    - name: "SECTION1 | 1.7.2 | Ensure GDM login banner is configured | file 01-banner-message"
+      ansible.builtin.template:
+        src: gdm/01-banner-message.j2
+        dest: /etc/dconf/db/gdm.d/01-banner-message
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+
+- name: "SECTION1 | 1.7.3 | Ensure GDM disable-user-list option is enabled"
+  ansible.builtin.template:
+    src: gdm/00-login-screen.j2
+    dest: /etc/dconf/db/gdm.d/00-login-screen
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_3
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.7.4 | Ensure GDM screen locks when the user is idle"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_4
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+  block:
+    - name: "SECTION1 | 1.7.4 | Ensure GDM screen locks when the user is idle | file user"
+      ansible.builtin.template:
+        src: gdm/profile-user-j2
+        dest: /etc/dconf/profile/user
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+    - name: "SECTION1 | 1.7.4 | Ensure GDM screen locks when the user is idle | file 00-screensaver"
+      ansible.builtin.template:
+        src: gdm/00-screensaver.j2
+        dest: /etc/dconf/db/local.d/00-screensaver
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+
+- name: "SECTION1 | 1.7.5 | Ensure GDM screen locks cannot be overridden"
+  ansible.builtin.template:
+    src: gdm/00-screensaver-locks.j2
+    dest: /etc/dconf/db/local.d/locks/00-screensaver
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_5
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.7.6 | Ensure GDM automatic mounting of removable media is disabled"
+  ansible.builtin.template:
+    src: gdm/00-media-automount.j2
+    dest: /etc/dconf/db/local.d/00-media-automount
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - not cis_ubuntu2404_allow_autofs
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_6
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l2
+
+- name: "SECTION1 | 1.7.7 | Ensure GDM disabling automatic mounting of removable media is not overridden"
+  ansible.builtin.template:
+    src: gdm/00-media-automount-locks.j2
+    dest: /etc/dconf/db/local.d/locks/00-media-automount
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - not cis_ubuntu2404_allow_autofs
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_7
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l2
+
+- name: "SECTION1 | 1.7.8 | Ensure GDM autorun-never is enabled"
+  ansible.builtin.template:
+    src: gdm/00-media-autorun.j2
+    dest: /etc/dconf/db/local.d/00-media-autorun
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_8
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.7.9 | Ensure GDM autorun-never is not overridden"
+  ansible.builtin.template:
+    src: gdm/00-media-autorun-locks.j2
+    dest: /etc/dconf/db/local.d/locks/00-media-autorun
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_9
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION1 | 1.7.10 | Ensure XDCMP is not enabled"
+  ansible.builtin.template:
+    src: gdm/custom.conf.j2
+    dest: /etc/gdm3/custom.conf
+    owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+    group: "{{ cis_ubuntu2404_section1_group_default }}"
+    mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+  when:
+    - service_status_gdm3.stdout == "loaded"
+    - cis_ubuntu2404_allow_gdm_gui
+    - cis_ubuntu2404_rule_1_7_10
+  tags:
+    - rule_1_7
+    - server_l1
+    - workstation_l1

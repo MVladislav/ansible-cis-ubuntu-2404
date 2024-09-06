@@ -1,0 +1,24 @@
+{% set cis_ubuntu2404_rule_1_1_2_4_options = [] %}
+{% set _ = cis_ubuntu2404_rule_1_1_2_4_options.append('rw') %}
+{% set _ = cis_ubuntu2404_rule_1_1_2_4_options.append('relatime') %}
+{% set _ = cis_ubuntu2404_rule_1_1_2_4_options.append('seclabel') %}
+{% if cis_ubuntu2404_rule_1_1_2_4_2 %}{% set _ = cis_ubuntu2404_rule_1_1_2_4_options.append('nodev') %}{% endif %}
+{% if cis_ubuntu2404_rule_1_1_2_4_3 %}{% set _ = cis_ubuntu2404_rule_1_1_2_4_options.append('nosuid') %}{% endif %}
+{% set cis_ubuntu2404_rule_1_1_2_4_options = cis_ubuntu2404_rule_1_1_2_4_options|join(',') %}
+[Unit]
+Description=Temporary Directory /var
+ConditionPathIsSymbolicLink=!/var
+DefaultDependencies=no
+Conflicts=umount.target
+Before=local-fs.target umount.target
+After=swap.target
+
+[Mount]
+Where=/var
+What=/dev/sdb
+Type=ext4
+Options={{ cis_ubuntu2404_rule_1_1_2_4_options }}
+
+# Make 'systemctl enable var.mount' work:
+[Install]
+WantedBy=local-fs.target
