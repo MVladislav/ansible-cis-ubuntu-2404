@@ -3,8 +3,8 @@
 
 # ------------------------------------------------------------------------------
 
-# - name: "SECTION4 | 4.1.1 | Ensure a single firewall configuration utility is in use"
 ## NOTE: implicit in rules below
+# - name: "SECTION4 | 4.1.1 | Ensure a single firewall configuration utility is in use"
 
 # ------------------------------------------------------------------------------
 

@@ -78,6 +78,7 @@
   when:
     - cis_ubuntu2404_rule_6_1_2_1_1
     - cis_ubuntu2404_set_journal_upload | bool
+    - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2_1
     - server_l1
@@ -115,12 +116,13 @@
     - cis_ubuntu2404_rule_6_1_2_1_2
     - cis_ubuntu2404_set_journal_upload | bool
     - cis_ubuntu2404_set_journal_upload_url is defined
+    - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2_1
     - server_l1
     - workstation_l1
 
-# NOTE: done in step before, by call notify
+## NOTE: done in step before, by call notify
 # - name: "SECTION6 | 6.1.2.1.3 | Ensure systemd-journal-upload is enabled and active"
 
 - name: "SECTION6 | 6.1.2.1.4 | Ensure systemd-journal-remote service is not in use"
@@ -136,6 +138,7 @@
   when:
     - cis_ubuntu2404_rule_6_1_2_1_4
     - cis_ubuntu2404_set_journal_upload | bool
+    - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2_1
     - server_l1
@@ -147,7 +150,7 @@
   ansible.builtin.lineinfile:
     dest: /etc/systemd/journald.conf
     regexp: "{{ cis_ubuntu2404_regex_base_search }}ForwardToSyslog{{ cis_ubuntu2404_regex_base_search_equals }}"
-    line: "#ForwardToSyslog=no"
+    line: "ForwardToSyslog=no"
     state: present
     owner: root
     group: root
@@ -155,6 +158,7 @@
   notify: Restart systemd-journald
   when:
     - cis_ubuntu2404_rule_6_1_2_2
+    - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2
     - server_l1
@@ -173,6 +177,7 @@
   notify: Restart systemd-journald
   when:
     - cis_ubuntu2404_rule_6_1_2_3
+    - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2
     - server_l1
@@ -191,6 +196,7 @@
   notify: Restart systemd-journald
   when:
     - cis_ubuntu2404_rule_6_1_2_4
+    - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2
     - server_l1
@@ -198,7 +204,144 @@
 
 # ------------------------------------------------------------------------------
 
-# TODO: add section "6.1.3 Configure rsyslog"
+- name: "SECTION6 | 6.1.3.1 | Ensure rsyslog is installed"
+  ansible.builtin.apt:
+    name: rsyslog
+    state: present
+    force_apt_get: true
+  when:
+    - cis_ubuntu2404_rule_6_1_3_1
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.2 | Ensure rsyslog service is enabled and active"
+  ansible.builtin.systemd:
+    name: rsyslog
+    daemon_reload: true
+    enabled: true
+    masked: false
+    state: started
+  when:
+    - cis_ubuntu2404_rule_6_1_3_2
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.3 | Ensure journald is configured to send logs to rsyslog"
+  ansible.builtin.lineinfile:
+    dest: /etc/systemd/journald.conf
+    regexp: "{{ cis_ubuntu2404_regex_base_search }}ForwardToSyslog{{ cis_ubuntu2404_regex_base_search_equals }}"
+    line: "ForwardToSyslog=yes"
+    state: present
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart systemd-journald
+  when:
+    - cis_ubuntu2404_rule_6_1_3_3
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.4 | Ensure rsyslog log file creation mode is configured"
+  ansible.builtin.lineinfile:
+    dest: /etc/rsyslog.conf
+    regexp: "{{ cis_ubuntu2404_regex_base_search }}$FileCreateMode "
+    line: "$FileCreateMode 0640"
+    state: present
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart rsyslog
+  when:
+    - cis_ubuntu2404_rule_6_1_3_4
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.5 | Ensure rsyslog logging is configured"
+  ansible.builtin.template:
+    src: 60-rsyslog.conf.j2
+    dest: /etc/rsyslog.d/60-rsyslog.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart rsyslog
+  when:
+    - cis_ubuntu2404_rule_6_1_3_5
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.6 | Ensure rsyslog is configured to send logs to a remote log host"
+  ansible.builtin.template:
+    src: 60-rsyslog.conf.j2
+    dest: /etc/rsyslog.d/60-rsyslog.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart rsyslog
+  when:
+    - cis_ubuntu2404_rule_6_1_3_6
+    - cis_ubuntu2404_set_rsyslog_remote | bool
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.7 | Ensure rsyslog is not configured to receive logs from a remote client"
+  ansible.builtin.lineinfile:
+    dest: /etc/rsyslog.conf
+    regexp: "{{ item.reg }}"
+    line: "{{ item.line }}"
+    state: present
+    create: true
+    owner: root
+    group: root
+    mode: "0644"
+  with_items:
+    - reg: '^module\(load="imtcp"\)'
+      line: '#module(load="imtcp")'
+    - reg: '^input\(type="imtcp" port="514"\)'
+      line: '#input(type="imtcp" port="514")'
+  notify: Restart rsyslog
+  when:
+    - cis_ubuntu2404_rule_6_1_3_7
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION6 | 6.1.3.8 | Ensure logrotate is configured"
+  ansible.builtin.template:
+    src: logrotate.conf.j2
+    dest: /etc/logrotate.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart rsyslog
+  when:
+    - cis_ubuntu2404_rule_6_1_3_8
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
+  tags:
+    - rule_6_1_3
+    - server_l1
+    - workstation_l1
 
 # ------------------------------------------------------------------------------
 
@@ -705,7 +848,7 @@
     - server_l2
     - workstation_l2
 
-# NOTE: done in steps before, by call notify
+## NOTE: done in steps before, by call notify
 # - name: "SECTION6 | 6.2.3.21 | Ensure the running and on disk configuration is the same"
 
 # ------------------------------------------------------------------------------

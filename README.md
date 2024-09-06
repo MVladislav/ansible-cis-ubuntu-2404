@@ -39,14 +39,16 @@ Based on **[CIS Ubuntu Linux 24.04 LTS Benchmark v1.0.0](https://downloads.cisec
 
 ## Notes
 
-- section :: 6.1.2.1 **Configure systemd-journal-remote**
-  - is configured, but not in deep tested _(default not setup with remote logging)_
 - section :: 4.3 **Configure nftables**
   - is configured, but not in deep tested _(default ufw is used from section 4.2)_
 - section :: 4.4 **Configure iptables**
   - is configured, but not in deep tested _(default ufw is used from section 4.2)_
 - section :: 5.3 **Pluggable Authentication Modules** :: 5.4 **User Accounts and Environment**
   - could be tested deeper, base tests are performed and for secure only used for fresh os install
+- section :: 6.1.2.1 **Configure systemd-journal-remote**
+  - is configured, but not in deep tested _(default not setup with remote logging)_
+- section :: 6.1.3.6 **Ensure rsyslog is configured to send logs to a remote log host**
+  - is configured, but not in deep tested _(default not setup with remote logging)_
 
 ## Requirements
 
@@ -119,10 +121,15 @@ cis_ubuntu2404_rule_1_4_1: false
 cis_ubuntu2404_set_boot_pass: false
 cis_ubuntu2404_disable_boot_pass: true
 
-# active journal upload to remote log collection
+# active journal send logs to a remote log host
 # do not forget set related variables 'cis_ubuntu2404_set_journal_upload_*'
 cis_ubuntu2404_set_journal_upload: false
 cis_ubuntu2404_set_journal_upload_url: <SET_REMOTE_URL>
+
+# active rsyslog upload to remote log collection
+# do not forget set related variables 'cis_ubuntu2404_set_rsyslog_remote_*'
+cis_ubuntu2404_set_rsyslog_remote: false
+cis_ubuntu2404_set_rsyslog_remote_target: <SET_REMOTE_URL>
 ```
 
 ### variable special usable between server and client
@@ -661,8 +668,8 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 5.4.3.1   | Ensure nologin is not listed in /etc/shells (Automated)                                          | 🟢  |     |     |
 | 5.4.3.2   | Ensure default user shell timeout is configured (Automated)                                      | 🟢  |     |     |
 | 5.4.3.3   | Ensure default user umask is configured (Automated)                                              | 🟢  |     |     |
-| 6         | **Logging and Auditing**                                                                         |     | 🟡  |     |
-| 6.1       | **System Logging**                                                                               |     | 🟡  |     |
+| 6         | **Logging and Auditing**                                                                         | 🟢  |     |     |
+| 6.1       | **System Logging**                                                                               | 🟢  |     |     |
 | 6.1.1     | **Configure systemd-journald service**                                                           | 🟢  |     |     |
 | 6.1.1.1   | Ensure journald service is enabled and active (Automated)                                        | 🟢  |     |     |
 | 6.1.1.2   | Ensure journald log file access is configured (Manual)                                           | 🟢  |     |     |
@@ -677,15 +684,15 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 6.1.2.2   | Ensure journald ForwardToSyslog is disabled (Automated)                                          | 🟢  |     |     |
 | 6.1.2.3   | Ensure journald Compress is configured (Automated)                                               | 🟢  |     |     |
 | 6.1.2.4   | Ensure journald Storage is configured (Automated)                                                | 🟢  |     |     |
-| 6.1.3     | **Configure rsyslog**                                                                            |     |     | 🔴  |
-| 6.1.3.1   | Ensure rsyslog is installed (Automated)                                                          |     |     | 🔴  |
-| 6.1.3.2   | Ensure rsyslog service is enabled and active (Automated)                                         |     |     | 🔴  |
-| 6.1.3.3   | Ensure journald is configured to send logs to rsyslog (Automated)                                |     |     | 🔴  |
-| 6.1.3.4   | Ensure rsyslog log file creation mode is configured (Automated)                                  |     |     | 🔴  |
-| 6.1.3.5   | Ensure rsyslog logging is configured (Manual)                                                    |     |     | 🔴  |
-| 6.1.3.6   | Ensure rsyslog is configured to send logs to a remote log host (Manual)                          |     |     | 🔴  |
-| 6.1.3.7   | Ensure rsyslog is not configured to receive logs from a remote client (Automated)                |     |     | 🔴  |
-| 6.1.3.8   | Ensure logrotate is configured (Manual)                                                          |     |     | 🔴  |
+| 6.1.3     | **Configure rsyslog**                                                                            | 🟢  |     |     |
+| 6.1.3.1   | Ensure rsyslog is installed (Automated)                                                          | 🟢  |     |     |
+| 6.1.3.2   | Ensure rsyslog service is enabled and active (Automated)                                         | 🟢  |     |     |
+| 6.1.3.3   | Ensure journald is configured to send logs to rsyslog (Automated)                                | 🟢  |     |     |
+| 6.1.3.4   | Ensure rsyslog log file creation mode is configured (Automated)                                  | 🟢  |     |     |
+| 6.1.3.5   | Ensure rsyslog logging is configured (Manual)                                                    | 🟢  |     |     |
+| 6.1.3.6   | Ensure rsyslog is configured to send logs to a remote log host (Manual)                          | 🟢  |     |     |
+| 6.1.3.7   | Ensure rsyslog is not configured to receive logs from a remote client (Automated)                | 🟢  |     |     |
+| 6.1.3.8   | Ensure logrotate is configured (Manual)                                                          | 🟢  |     |     |
 | 6.1.4     | **Configure Logfiles**                                                                           | 🟢  |     |     |
 | 6.1.4.1   | Ensure access to all logfiles has been configured (Automated)                                    | 🟢  |     |     |
 | 6.2       | **System Auditing**                                                                              | 🟢  |     |     |
