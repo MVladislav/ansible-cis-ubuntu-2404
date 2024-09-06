@@ -87,7 +87,7 @@
 
 # ------------------------------------------------------------------------------
 
-- name: "PRE | 2.1.21, 6.1.1 | check if 'postfix' package is installed"
+- name: "PRE | 2.1.21, 6.3.1 | check if 'postfix' package is installed"
   ansible.builtin.command: dpkg -V postfix
   register: package_installed_postfix
   changed_when: false

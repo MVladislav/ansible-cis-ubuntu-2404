@@ -156,34 +156,35 @@ cis_ubuntu2404_rule_3_3_9: true
 cis_ubuntu2404_rule_3_3_10: true
 cis_ubuntu2404_rule_3_3_11: true
 ## SECTION 4 rules
-cis_ubuntu2404_rule_4_1_1: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_1_2: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_1_3: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_1_4: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_1_5: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_1_6: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_1_7: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
-cis_ubuntu2404_rule_4_2_1: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_2: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_3: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_4: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_5: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_6: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_7: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_8: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_9: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_2_10: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
-cis_ubuntu2404_rule_4_3_1_1: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_1_2: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_1_3: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_2_1: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_2_2: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_2_3: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_2_4: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_3_1: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_3_2: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_3_3: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
-cis_ubuntu2404_rule_4_3_3_4: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_1_1: true # NOTE: not implemented, as below rules will set it as needed
+cis_ubuntu2404_rule_4_2_1: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_2_2: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_2_3: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_2_4: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_2_5: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_2_6: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_2_7: true # NOTE: 'cis_ubuntu2404_firewall == ufw'
+cis_ubuntu2404_rule_4_3_1: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_2: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_3: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_4: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_5: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_6: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_7: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_8: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_9: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_3_10: true # NOTE: 'cis_ubuntu2404_firewall == nftables'
+cis_ubuntu2404_rule_4_4_1_1: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_1_2: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_1_3: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_2_1: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_2_2: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_2_3: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_2_4: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_3_1: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_3_2: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_3_3: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
+cis_ubuntu2404_rule_4_4_3_4: true # NOTE: 'cis_ubuntu2404_firewall == iptables'
 ## SECTION 5 rules
 cis_ubuntu2404_rule_5_1_0: true
 cis_ubuntu2404_rule_5_1_1: true
@@ -259,60 +260,71 @@ cis_ubuntu2404_rule_5_4_3_1: true
 cis_ubuntu2404_rule_5_4_3_2: true
 cis_ubuntu2404_rule_5_4_3_3: true
 ## SECTION 6 rules
-cis_ubuntu2404_rule_6_1_1: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
-cis_ubuntu2404_rule_6_1_2: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
-cis_ubuntu2404_rule_6_1_3: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
-cis_ubuntu2404_rule_6_2_1_1_1: true
-cis_ubuntu2404_rule_6_2_1_1_2: true
-cis_ubuntu2404_rule_6_2_1_1_3: true
-cis_ubuntu2404_rule_6_2_1_1_4: true
-cis_ubuntu2404_rule_6_2_1_1_5: true
-cis_ubuntu2404_rule_6_2_1_1_6: true
-cis_ubuntu2404_rule_6_2_1_2_1: true # NOTE: depends also on 'cis_ubuntu2404_set_journal_upload'
-cis_ubuntu2404_rule_6_2_1_2_2: true # NOTE: depends also on 'cis_ubuntu2404_set_journal_upload'
-# cis_ubuntu2404_rule_6_2_1_2_3: true # NOTE: implicit in 'cis_ubuntu2404_rule_6_2_1_2_2'
-cis_ubuntu2404_rule_6_2_1_2_4: true # NOTE: depends also on 'cis_ubuntu2404_set_journal_upload'
+cis_ubuntu2404_rule_6_1_1_1: true
+cis_ubuntu2404_rule_6_1_1_2: true
+cis_ubuntu2404_rule_6_1_1_3: true
+# cis_ubuntu2404_rule_6_1_1_4: true # NOTE: not implemented
+cis_ubuntu2404_rule_6_1_2_1_1: true # NOTE: depends also on 'cis_ubuntu2404_set_journal_upload'
+cis_ubuntu2404_rule_6_1_2_1_2: true # NOTE: depends also on 'cis_ubuntu2404_set_journal_upload'
+# cis_ubuntu2404_rule_6_1_2_1_3: true # NOTE: implicit in 'cis_ubuntu2404_rule_6_1_2_1_2'
+cis_ubuntu2404_rule_6_1_2_1_4: true # NOTE: depends also on 'cis_ubuntu2404_set_journal_upload'
+cis_ubuntu2404_rule_6_1_2_2: true
+cis_ubuntu2404_rule_6_1_2_3: true
+cis_ubuntu2404_rule_6_1_2_4: true
+# cis_ubuntu2404_rule_6_1_3_1: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_2: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_3: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_4: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_5: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_6: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_7: true # NOTE: not implemented
+# cis_ubuntu2404_rule_6_1_3_8: true # NOTE: not implemented
+cis_ubuntu2404_rule_6_1_4_1: true
+
+cis_ubuntu2404_rule_6_2_1_1: true
+cis_ubuntu2404_rule_6_2_1_2: true
+cis_ubuntu2404_rule_6_2_1_3: true
+cis_ubuntu2404_rule_6_2_1_4: true
 cis_ubuntu2404_rule_6_2_2_1: true
-cis_ubuntu2404_rule_6_3_1_1: true
-cis_ubuntu2404_rule_6_3_1_2: true
-cis_ubuntu2404_rule_6_3_1_3: true
-cis_ubuntu2404_rule_6_3_1_4: true
-cis_ubuntu2404_rule_6_3_2_1: true
-cis_ubuntu2404_rule_6_3_2_2: true
-cis_ubuntu2404_rule_6_3_2_3: true
-cis_ubuntu2404_rule_6_3_2_4: true
-cis_ubuntu2404_rule_6_3_3_1: true
-cis_ubuntu2404_rule_6_3_3_2: true
-cis_ubuntu2404_rule_6_3_3_3: true
-cis_ubuntu2404_rule_6_3_3_4: true
-cis_ubuntu2404_rule_6_3_3_5: true
-cis_ubuntu2404_rule_6_3_3_6: true
-cis_ubuntu2404_rule_6_3_3_7: true
-cis_ubuntu2404_rule_6_3_3_8: true
-cis_ubuntu2404_rule_6_3_3_9: true
-cis_ubuntu2404_rule_6_3_3_10: true
-cis_ubuntu2404_rule_6_3_3_11: true
-cis_ubuntu2404_rule_6_3_3_12: true
-cis_ubuntu2404_rule_6_3_3_13: true
-cis_ubuntu2404_rule_6_3_3_14: true
-cis_ubuntu2404_rule_6_3_3_15: true
-cis_ubuntu2404_rule_6_3_3_16: true
-cis_ubuntu2404_rule_6_3_3_17: true
-cis_ubuntu2404_rule_6_3_3_18: true
-cis_ubuntu2404_rule_6_3_3_19: true
-cis_ubuntu2404_rule_6_3_3_20: true
-# cis_ubuntu2404_rule_6_3_3_21: true # NOTE: implicit in 'cis_ubuntu2404_rule_6_3_3_1-20'
-cis_ubuntu2404_rule_6_3_4_0: true
-cis_ubuntu2404_rule_6_3_4_1: true
-cis_ubuntu2404_rule_6_3_4_2: true
-cis_ubuntu2404_rule_6_3_4_3: true
-cis_ubuntu2404_rule_6_3_4_4: true
-cis_ubuntu2404_rule_6_3_4_5: true
-cis_ubuntu2404_rule_6_3_4_6: true
-cis_ubuntu2404_rule_6_3_4_7: true
-cis_ubuntu2404_rule_6_3_4_8: true
-cis_ubuntu2404_rule_6_3_4_9: true
-cis_ubuntu2404_rule_6_3_4_10: true
+cis_ubuntu2404_rule_6_2_2_2: true
+cis_ubuntu2404_rule_6_2_2_3: true
+cis_ubuntu2404_rule_6_2_2_4: true
+cis_ubuntu2404_rule_6_2_3_1: true
+cis_ubuntu2404_rule_6_2_3_2: true
+cis_ubuntu2404_rule_6_2_3_3: true
+cis_ubuntu2404_rule_6_2_3_4: true
+cis_ubuntu2404_rule_6_2_3_5: true
+cis_ubuntu2404_rule_6_2_3_6: true
+cis_ubuntu2404_rule_6_2_3_7: true
+cis_ubuntu2404_rule_6_2_3_8: true
+cis_ubuntu2404_rule_6_2_3_9: true
+cis_ubuntu2404_rule_6_2_3_10: true
+cis_ubuntu2404_rule_6_2_3_11: true
+cis_ubuntu2404_rule_6_2_3_12: true
+cis_ubuntu2404_rule_6_2_3_13: true
+cis_ubuntu2404_rule_6_2_3_14: true
+cis_ubuntu2404_rule_6_2_3_15: true
+cis_ubuntu2404_rule_6_2_3_16: true
+cis_ubuntu2404_rule_6_2_3_17: true
+cis_ubuntu2404_rule_6_2_3_18: true
+cis_ubuntu2404_rule_6_2_3_19: true
+cis_ubuntu2404_rule_6_2_3_20: true
+# cis_ubuntu2404_rule_6_2_3_21: true # NOTE: implicit in 'cis_ubuntu2404_rule_6_2_3_1-20'
+cis_ubuntu2404_rule_6_2_4_0: true
+cis_ubuntu2404_rule_6_2_4_1: true
+cis_ubuntu2404_rule_6_2_4_2: true
+cis_ubuntu2404_rule_6_2_4_3: true
+cis_ubuntu2404_rule_6_2_4_4: true
+cis_ubuntu2404_rule_6_2_4_5: true
+cis_ubuntu2404_rule_6_2_4_6: true
+cis_ubuntu2404_rule_6_2_4_7: true
+cis_ubuntu2404_rule_6_2_4_8: true
+cis_ubuntu2404_rule_6_2_4_9: true
+cis_ubuntu2404_rule_6_2_4_10: true
+cis_ubuntu2404_rule_6_3_1: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
+cis_ubuntu2404_rule_6_3_2: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
+cis_ubuntu2404_rule_6_3_3: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
+
 ## SECTION 7 rules
 cis_ubuntu2404_rule_7_1_1: true
 cis_ubuntu2404_rule_7_1_2: true
@@ -357,9 +369,9 @@ cis_ubuntu2404_allow_gdm_gui: false
 cis_ubuntu2404_allow_cups: false
 # ipv6 is required (cis_ubuntu2404_rule_3_1_1)
 cis_ubuntu2404_required_ipv6: false
-# cis_ubuntu2404_journal_upload_url (cis_ubuntu2404_rule_6_2_1_2_1-4)
+# cis_ubuntu2404_journal_upload_url (cis_ubuntu2404_rule_6_1_2_1_1-4)
 cis_ubuntu2404_set_journal_upload: false
-# AIDE perform install/config (cis_ubuntu2404_rule_6_1_1-3)
+# AIDE perform install/config (cis_ubuntu2404_rule_6_3_1-3)
 cis_ubuntu2404_install_aide: true # NOTE: depends also on 'cis_ubuntu2404_config_aide'
 cis_ubuntu2404_config_aide: true
 
@@ -367,6 +379,30 @@ cis_ubuntu2404_config_aide: true
 
 # SPECIAL variables
 # ---------------------------------------
+
+# Ensure unused filesystems kernel modules are not available (cis_ubuntu2404_rule_1_1_1_10)
+cis_ubuntu2404_fs_known_vulnerable:
+  - afs
+  - ceph
+  - cifs
+  - exfat
+  - ext
+  - fat
+  - fscache
+  - fuse
+  - gfs2
+  - nfs_common
+  - nfsd
+  - smbfs_common
+cis_ubuntu2404_fs_ignored: # these filesystem won't be disabled
+  - xfs
+  - vfat
+  - ext2
+  - ext3
+  - ext4
+  - zfs
+  - tmpfs
+
 # bootloader password. 'random' makes random password (cis_ubuntu2404_rule_1_4_1)
 cis_ubuntu2404_bootloader_password: random # pragma: allowlist secret
 # grub default file path (cis_ubuntu2404_rule_1_3_1_2)
@@ -392,12 +428,12 @@ cis_ubuntu2404_at_allow_users:
 
 # choose firewall (cis_ubuntu2404_rule_4_*)
 cis_ubuntu2404_firewall: ufw # ufw | nftables | iptables
-# define if outgoing traffic should be default deny or allow (cis_ubuntu2404_rule_4_1_7)
+# define if outgoing traffic should be default deny or allow (cis_ubuntu2404_rule_4_2_7)
 cis_ubuntu2404_firewall_ufw_outgoing_policy: deny
-# defined nftable table name (cis_ubuntu2404_rule_4_2_4-9)
+# defined nftable table name (cis_ubuntu2404_rule_4_3_4-9)
 cis_ubuntu2404_firewall_nftables_table_name: filter
 
-# (cis_ubuntu2404_rule_4_1_6)
+# (cis_ubuntu2404_rule_4_2_6)
 cis_ubuntu2404_firewall_rules_exist_open_ports:
   []
   # - rule: allow
@@ -492,7 +528,7 @@ cis_ubuntu2404_password_pass_min_days: 1
 cis_ubuntu2404_password_pass_warn_age: 7
 cis_ubuntu2404_password_inactive: 45
 
-# AIDE cron settings (cis_ubuntu2404_rule_6_1_2)
+# AIDE cron settings (cis_ubuntu2404_rule_6_3_2)
 cis_ubuntu2404_aide_cron:
   cron_user: root
   cron_file: aide
@@ -502,35 +538,35 @@ cis_ubuntu2404_aide_cron:
   aide_day: "*"
   aide_month: "*"
   aide_weekday: "*"
-# journald log file rotation (cis_ubuntu2404_rule_6_2_1_1_3)
+# journald log file rotation (cis_ubuntu2404_rule_6_1_1_3)
 cis_ubuntu2404_journald_system_max_use: 4G
 cis_ubuntu2404_journald_system_keep_free: 8G
 cis_ubuntu2404_journald_runtime_max_use: 256M
 cis_ubuntu2404_journald_runtime_keep_free: 512M
 cis_ubuntu2404_journald_max_file_sec: 1month
-# systemd-journal-upload remote upload (cis_ubuntu2404_rule_6_2_1_2_2)
+# systemd-journal-upload remote upload (cis_ubuntu2404_rule_6_1_2_2_3)
 cis_ubuntu2404_set_journal_upload_url: "{{ omit }}"
 cis_ubuntu2404_set_journal_upload_server_key_file: /etc/ssl/private/journal-upload.pem
 cis_ubuntu2404_set_journal_upload_server_certificate_file: /etc/ssl/certs/journal-upload.pem
 cis_ubuntu2404_set_journal_upload_trusted_certificate_file: /etc/ssl/ca/trusted.pem
 
-# audit backlog limit (cis_ubuntu2404_rule_6_3_1_4)
+# audit backlog limit (cis_ubuntu2404_rule_6_2_1_4)
 cis_ubuntu2404_audit_backlog_limit: 8192
-# audit conf's (cis_ubuntu2404_rule_6_3_2_*)
+# audit conf's (cis_ubuntu2404_rule_6_2_2_*)
 cis_ubuntu2404_audit_max_log_file: 8
 cis_ubuntu2404_audit_max_log_file_action: keep_logs
 cis_ubuntu2404_audit_disk_full_action: halt # halt | single
 cis_ubuntu2404_audit_disk_error_action: halt # halt | syslog | single
 cis_ubuntu2404_audit_space_left_action: email # email | exec | single | halt
 cis_ubuntu2404_audit_admin_space_left_action: single # single | halt
-# (cis_ubuntu2404_rule_6_3_4_1-4)
+# (cis_ubuntu2404_rule_6_2_4_1-4)
 cis_ubuntu2404_audit_log_path: /var/log/audit
-# auditd group (cis_ubuntu2404_rule_6_3_4_3)
+# auditd group (cis_ubuntu2404_rule_6_2_4_3)
 cis_ubuntu2404_audit_log_group: adm
-# in file (cis_6_3_3_3.rules.j2) and (cis_ubuntu2404_rule_5_2_3)
+# in file (cis_6_2_3_3.rules.j2) and (cis_ubuntu2404_rule_5_2_3)
 cis_ubuntu2404_audit_sudo_log_file: /var/log/sudo.log
-# in file (cis_6_3_3_6.rules.j2|cis_6_3_3_7.rules.j2|cis_6_3_3_9.rules.j2|cis_6_3_3_10.rules.j2|cis_6_3_3_13.rules.j2)
-# in file (cis_6_3_3_15.rules.j2|cis_6_3_3_16.rules.j2|cis_6_3_3_17.rules.j2|cis_6_3_3_18.rules.j2|cis_6_3_3_19.rules.j2)
+# in file (cis_6_2_3_6.rules.j2|cis_6_2_3_7.rules.j2|cis_6_2_3_9.rules.j2|cis_6_2_3_10.rules.j2|cis_6_2_3_13.rules.j2)
+# in file (cis_6_2_3_15.rules.j2|cis_6_2_3_16.rules.j2|cis_6_2_3_17.rules.j2|cis_6_2_3_18.rules.j2|cis_6_2_3_19.rules.j2)
 cis_ubuntu2404_audit_uid_min: 1000
 
 # ------------------------------------------------------------------------------
@@ -718,7 +754,7 @@ cis_ubuntu2404_2_2_rule_set:
       - ftp
     remove: "{{ cis_ubuntu2404_rule_2_2_6 }}"
 
-# SPECIAL multi similar CIS rules set for 6.2.2.1
+# SPECIAL multi similar CIS rules set for 6.1.4.1
 cis_ubuntu2404_logfiles_access:
   - files: 'lastlog|lastlog\.*|wtmp|wtmp\.*|wtmp-*|btmp|btmp\.*|btmp-*|README'
     mode: "0664"

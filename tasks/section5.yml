@@ -1251,7 +1251,7 @@
       changed_when: false
       failed_when: false
 
-- name: "SECTION5 | 5.4.1.2 | Ensure minimum password age is configured"
+- name: "SECTION5 | 5.4.1.2 | Ensure minimum password days is configured"
   when:
     - cis_ubuntu2404_rule_5_4_1_2
   tags:
@@ -1259,7 +1259,7 @@
     - server_l2
     - workstation_l2
   block:
-    - name: "SECTION5 | 5.4.1.2 | Ensure minimum password age is configured | set inside '/etc/login.defs'"
+    - name: "SECTION5 | 5.4.1.2 | Ensure minimum password days is configured | set inside '/etc/login.defs'"
       ansible.builtin.lineinfile:
         dest: /etc/login.defs
         regexp: "{{ cis_ubuntu2404_regex_base_search }}PASS_MIN_DAYS"
@@ -1269,7 +1269,7 @@
         owner: root
         group: root
         mode: "0644"
-    - name: "SECTION5 | 5.4.1.2 | Ensure minimum password age is configured | find user with wrong minimum value"
+    - name: "SECTION5 | 5.4.1.2 | Ensure minimum password days is configured | find user with wrong minimum value"
       ansible.builtin.shell: |
         set -o pipefail &&
         awk -F: '($2~/^\$.+\$/) {if($4 < {{ cis_ubuntu2404_password_pass_min_days }}) print $1}' /etc/shadow
@@ -1278,7 +1278,7 @@
       register: cis_ubuntu2404_minimum_users_raw
       changed_when: false
       check_mode: false
-    - name: "SECTION5 | 5.4.1.2 | Ensure minimum password age is configured | update minimum users value"
+    - name: "SECTION5 | 5.4.1.2 | Ensure minimum password days is configured | update minimum users value"
       ansible.builtin.command: >
         chage --mindays {{ cis_ubuntu2404_password_pass_min_days }} {{ item }}
       loop: "{{ cis_ubuntu2404_minimum_users_raw.stdout_lines }}"
@@ -1449,7 +1449,7 @@
     - server_l1
     - workstation_l1
 
-# - name: "SECTION5 | 5.4.2.4 | Ensure root password is set"
+# - name: "SECTION5 | 5.4.2.4 | Ensure root account access is controlled"
 
 - name: "SECTION5 | 5.4.2.5 | Ensure root path integrity"
   when:
