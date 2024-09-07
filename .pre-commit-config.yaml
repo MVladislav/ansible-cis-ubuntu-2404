@@ -8,6 +8,9 @@ ci:
     # This steps run in the ci workflow. Keep in sync
     - ansible-lint
 
+default_language_version:
+  python: python3.12
+
 repos:
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0

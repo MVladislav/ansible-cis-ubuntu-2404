@@ -62,7 +62,7 @@ Strongly advise testing in a staging environment before applying in production.
 
 Before using this role, ensure that your system meets the following requirements:
 
-- Python >= 3.11
+- Python >= 3.12
 - Ansible >= 2.16
 - SSH access to the target machine.
 

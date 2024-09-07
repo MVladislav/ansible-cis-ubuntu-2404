@@ -20,7 +20,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [{ version: "3.11", param: "--break-system-packages" }]
+        python-version: [{ version: "3.12", param: "--break-system-packages" }]
         molecule-os: ["ubuntu2404"]
 
     steps:
