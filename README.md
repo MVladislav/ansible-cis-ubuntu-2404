@@ -4,15 +4,16 @@
 [![Ansible Molecule Test](https://github.com/MVladislav/ansible-cis-ubuntu-2404/actions/workflows/ci.yml/badge.svg)](https://github.com/MVladislav/ansible-cis-ubuntu-2404/actions/workflows/ci.yml)
 
 - [CIS - Ubuntu 24.04](#cis---ubuntu-2404)
+  - [Disclaimer](#disclaimer)
   - [Notes](#notes)
   - [Requirements](#requirements)
   - [Role Variables](#role-variables)
-    - [run only setup per section](#run-only-setup-per-section)
-    - [variables not included in CIS as additional extend](#variables-not-included-in-cis-as-additional-extend)
-    - [variables which are recommended by CIS, but disable in this role by default](#variables-which-are-recommended-by-cis-but-disable-in-this-role-by-default)
-    - [variable special usable between server and client](#variable-special-usable-between-server-and-client)
-    - [variables to check and set for own purpose](#variables-to-check-and-set-for-own-purpose)
-    - [variable rules implemented, but only print information for manual check](#variable-rules-implemented-but-only-print-information-for-manual-check)
+    - [Run only setup per section](#run-only-setup-per-section)
+    - [Variables not included in CIS as additional extend](#variables-not-included-in-cis-as-additional-extend)
+    - [Variables which are recommended by CIS, but disable in this role by default](#variables-which-are-recommended-by-cis-but-disable-in-this-role-by-default)
+    - [Variable for special usage between server and client](#variable-for-special-usage-between-server-and-client)
+    - [Variables to check and set for own purpose](#variables-to-check-and-set-for-own-purpose)
+    - [Variable rules implemented, but only print information for manual check](#variable-rules-implemented-but-only-print-information-for-manual-check)
   - [Dependencies](#dependencies)
   - [Example Playbook](#example-playbook)
   - [Definitions](#definitions)
@@ -23,19 +24,26 @@
 
 ---
 
-Configure Ubuntu 24.04 to be CIS compliant.
+This Ansible role is designed to configure **Ubuntu 24.04** to **comply** with the **CIS Ubuntu Linux Benchmark v1.0.0**. \
+It automates the application of hardening recommendations to enhance system security. \
+While this role can help mitigate common security risks, it is essential to tailor the configurations to your specific environment.
+
+Based on **[CIS Ubuntu Linux 24.04 LTS Benchmark v1.0.0](https://downloads.cisecurity.org/#/)**.
 
 Tested with:
 
 - Ubuntu 24.04
 
-This role **will make changes to the system** that could break things. \
-This is not an auditing tool but rather a remediation tool to be used after an audit has been conducted.
+## Disclaimer
+
+This role makes **significant changes to your system** that **could break functionality**. \
+This is not an auditing tool but rather a remediation tool to be used after an audit has been conducted. \
+While based on industry-standard security guidelines (CIS), it is recommended to review these changes, especially when applied to existing systems.
 
 This role was **developed against a clean install** of the Operating System. \
-If you are **implementing to an existing system** please **review** this role for any **site specific changes** that are needed.
+If you are **implementing to an existing system** please **review thoroughly** this role for any **site specific changes** before applying them to production systems.
 
-Based on **[CIS Ubuntu Linux 24.04 LTS Benchmark v1.0.0](https://downloads.cisecurity.org/#/)**.
+Strongly advise testing in a staging environment before applying in production.
 
 ## Notes
 
@@ -52,30 +60,30 @@ Based on **[CIS Ubuntu Linux 24.04 LTS Benchmark v1.0.0](https://downloads.cisec
 
 ## Requirements
 
-You should **carefully read** through the tasks
-to **make sure these changes will not break your systems**
-before running this playbook.
+Before using this role, ensure that your system meets the following requirements:
 
-To start working in this Role you just need to **install** **Python** and **Ansible**:
+- Python >= 3.11
+- Ansible >= 2.16
+- SSH access to the target machine.
+
+Install required tools and libraries:
 
 ```sh
 $sudo apt install python3 python3-pip sshpass
-# if python >= 3.11 used, add also '--break-system-packages'
-$python3 -m pip install ansible ansible-lint yamllint
+$python3 -m pip install ansible ansible-lint yamllint --break-system-packages
 ```
 
 For run **tests** with **molecule**, you need also to **install**:
 
 ```sh
-# if python >= 3.11 used, add also '--break-system-packages'
-$python3 -m pip install molecule molecule-plugins[docker]
+$python3 -m pip install molecule molecule-plugins[docker] --break-system-packages
 ```
 
 ## Role Variables
 
-### run only setup per section
+### Run only setup per section
 
-> _default all section are active and will performed_
+> _Default all section are active and will performed_
 
 ```yaml
 cis_ubuntu2404_section1: true
@@ -87,27 +95,32 @@ cis_ubuntu2404_section6: true
 cis_ubuntu2404_section7: true
 ```
 
-### variables not included in CIS as additional extend
+### Variables not included in CIS as additional extend
 
 ```yaml
-# additional configs for remove all comments in /etc/ssh/sshd_config
+# Extend the default sshd_config hardening to remove unnecessary comments and empty lines.
+# 'true' by default.
 cis_ubuntu2404_rule_5_1_0: true
 
-# additional configs for ssh which not defined set by CIS
+# Extend the default sshd_config hardening, which not defined within CIS,
+# by include more configuration based on https://infosec.mozilla.org/guidelines/openssh.html.
+# 'true' by default.
 cis_ubuntu2404_rule_5_1_23: true
 
-# the rules 'cis_ubuntu2404_rule_5_1_19', 'cis_ubuntu2404_rule_5_1_20', 'cis_ubuntu2404_rule_5_1_23'
-# disable ssh login by password, to avoid block login when no public key was added this rule is extended
-# it is 'false' by default
+# Avoid SSH login lockout by specifying the user and public key for SSH access.
+# Lockout will happen when 'cis_ubuntu2404_rule_5_1_19', 'cis_ubuntu2404_rule_5_1_20' and 'cis_ubuntu2404_rule_5_1_23' are used.
+# Ensure that a valid SSH public key is provided, or set this rule to false.
+# 'false' by default, when 'cis_ubuntu2404_rule_5_1_24_ssh_pub_key' not defined.
 cis_ubuntu2404_rule_5_1_24: true
 cis_ubuntu2404_rule_5_1_24_ssh_user: "{{ ansible_user }}"
 cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "<ADD_PUB_KEY>"
 
-# set auditd log_file as needed to be save in other configs
+# Set for auditd inside auditd.conf the key for 'log_file' to be save in upcoming configurations
+# 'true' by default.
 cis_ubuntu2404_rule_6_2_4_0: true
 ```
 
-### variables which are recommended by CIS, but disable in this role by default
+### Variables which are recommended by CIS, but disable in this role by default
 
 > _change default configured values, to be CIS recommended if needed_
 
@@ -117,24 +130,23 @@ cis_ubuntu2404_rule_6_2_4_0: true
 cis_ubuntu2404_rule_1_3_1_4: false
 
 # Ensure bootloader password is set
-cis_ubuntu2404_rule_1_4_1: false
 cis_ubuntu2404_set_boot_pass: false
 cis_ubuntu2404_disable_boot_pass: true
 
-# active journal send logs to a remote log host
+# Active journal send logs to a remote log host
 # do not forget set related variables 'cis_ubuntu2404_set_journal_upload_*'
 cis_ubuntu2404_set_journal_upload: false
 cis_ubuntu2404_set_journal_upload_url: <SET_REMOTE_URL>
 
-# active rsyslog upload to remote log collection
+# Active rsyslog upload to remote log collection
 # do not forget set related variables 'cis_ubuntu2404_set_rsyslog_remote_*'
 cis_ubuntu2404_set_rsyslog_remote: false
 cis_ubuntu2404_set_rsyslog_remote_target: <SET_REMOTE_URL>
 ```
 
-### variable special usable between server and client
+### Variable for special usage between server and client
 
-> _check services which will removed or disabled,
+> _Check services which will removed or disabled,
 > which maybe needed, for example especial for client usage_
 
 ```yaml
@@ -163,7 +175,7 @@ cis_ubuntu2404_install_aide: true
 cis_ubuntu2404_config_aide: true
 ```
 
-### variables to check and set for own purpose
+### Variables to check and set for own purpose
 
 ```yaml
 # choose time synchronization (cis_ubuntu2404_rule_2_3_1_1)
@@ -232,7 +244,7 @@ cis_ubuntu2404_journald_runtime_keep_free: 512M
 cis_ubuntu2404_journald_max_file_sec: 1month
 ```
 
-### variable rules implemented, but only print information for manual check
+### Variable rules implemented, but only print information for manual check
 
 ```yaml
 # SECTION1 | 1.2.1.1 | Ensure GPG keys are configured
@@ -262,11 +274,11 @@ cis_ubuntu2404_rule_7_2_8: true
 
 ## Dependencies
 
-Developed and testes with Ansible 2.14.4
+Developed and testes with Ansible 2.16
 
 ## Example Playbook
 
-example usage you can find also [here](https://github.com/MVladislav/ansible-env-setup).
+Example usage can be found also [here](https://github.com/MVladislav/ansible-env-setup).
 
 ```yaml
 - name: CIS | install on clients
@@ -291,9 +303,8 @@ example usage you can find also [here](https://github.com/MVladislav/ansible-env
       cis_ubuntu2404_rule_1_3_1_3: true # AppArmor complain mode
       cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode
       # -------------------------
-      cis_ubuntu2404_rule_1_4_1: false # bootloader password (disabled)
       cis_ubuntu2404_set_boot_pass: false # bootloader password (disabled)
-      cis_ubuntu2404_disable_boot_pass: true # bootloader password (disabled)
+      cis_ubuntu2404_disable_boot_pass: true # bootloader password (disabled with cis_ubuntu2404_set_boot_pass)
       # -------------------------
       cis_ubuntu2404_rule_3_1_3: false # bluetooth service
       cis_ubuntu2404_rule_3_1_3_remove: false # bluetooth service
@@ -376,11 +387,11 @@ For more specific description see the **CIS pdf** file on **page 18**.
 
 | Key                                                  | Count |
 | :--------------------------------------------------- | :---- |
-| 🟢 Implemented                                       | 268   |
+| 🟢 Implemented                                       | 280   |
 | 🟡 Partly Implemented or print info for manual check | 13    |
 | 🔴 Not Implemented                                   | 20    |
-| Total                                                | 301   |
-| Coverage (Implemented/Partly vs Total)               | 93.35 |
+| Total                                                | 313   |
+| Coverage (Implemented/Partly vs Total)               | 93.61 |
 
 | ID        | CIS Benchmark Recommendation Set                                                                 | Yes | Y/N | No  |
 | :-------- | :----------------------------------------------------------------------------------------------- | :-: | :-: | :-: |
@@ -779,4 +790,4 @@ MIT
 ## Resources
 
 - <https://downloads.cisecurity.org/#/>
-- <https://github.com/MVladislav/ansible-cis-ubuntu-2404>
+- <https://github.com/MVladislav/ansible-cis-ubuntu-2204>

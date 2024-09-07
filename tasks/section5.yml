@@ -3,10 +3,10 @@
 
 # ------------------------------------------------------------------------------
 
-- name: "SECTION5 | 5.1.0 | Ensure on /etc/ssh/sshd_config comments are removed"
+- name: "SECTION5 | 5.1.0 | Ensure on /etc/ssh/sshd_config comments and empty lines are removed"
   ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: "^#"
+    regexp: "^#|^$"
     state: absent
   when:
     - cis_ubuntu2404_rule_5_1_0
