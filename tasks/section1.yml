@@ -294,55 +294,13 @@
 
     - name: >
         SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | check and unload loaded vulnerable filesystems
+      ansible.builtin.include_tasks: section1-1_1_1_10.yml
       loop: "{{ cis_ubuntu2404_available_fs_modules.files | map(attribute='path') | map('basename') }}"
+      loop_control:
+        loop_var: cis_ubuntu2404_fs_module_file
       when:
-        - item in cis_ubuntu2404_fs_known_vulnerable
-        - item not in cis_ubuntu2404_fs_ignored
-      block:
-        - name: >
-            SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | check if filesystem is mounted for {{ item }}
-          ansible.builtin.set_fact:
-            cis_ubuntu2404_is_fs_mounted: "{{ item in cis_ubuntu2404_mounted_filesystems.stdout_lines }}"
-
-        - name: >
-            SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | check if kernel module is loaded for {{ item }}
-          ansible.builtin.shell: "set -o pipefail && lsmod | grep {{ item }}"
-          args:
-            executable: "{{ cis_ubuntu2404_shell_executable }}"
-          register: cis_ubuntu2404_lsmod_output
-          changed_when: false
-          failed_when: false
-          check_mode: false
-
-        - name: >
-            SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | log vulnerable filesystem
-          ansible.builtin.debug:
-            msg: "** WARNING: Filesystem {{ item }} is loaded and vulnerable to CVE!"
-          when: cis_ubuntu2404_lsmod_output.rc == 0 and not cis_ubuntu2404_is_fs_mounted | bool
-
-        - name: >
-            SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | unload kernel module if loaded for {{ item }}
-          community.general.modprobe:
-            name: "{{ item }}"
-            state: absent
-          when: cis_ubuntu2404_lsmod_output.rc == 0 and not cis_ubuntu2404_is_fs_mounted | bool
-
-        - name: >
-            SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | setting module and deny listing for {{ item }}
-          ansible.builtin.lineinfile:
-            dest: /etc/modprobe.d/cis.conf
-            regexp: "{{ item.reg }}"
-            line: "{{ item.line }}"
-            state: present
-            create: true
-            owner: "{{ cis_ubuntu2404_section1_owner_default }}"
-            group: "{{ cis_ubuntu2404_section1_group_default }}"
-            mode: "{{ cis_ubuntu2404_section1_mode_default }}"
-          with_items:
-            - reg: '{{ cis_ubuntu2404_regex_base_search }}install {{ item }}(\s|$)'
-              line: "install {{ item }} /bin/false"
-            - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist {{ item }}$"
-              line: "blacklist {{ item }}"
+        - cis_ubuntu2404_fs_module_file in cis_ubuntu2404_fs_known_vulnerable
+        - cis_ubuntu2404_fs_module_file not in cis_ubuntu2404_fs_ignored
 
 # ------------------------------------------------------------------------------
 
