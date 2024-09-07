@@ -280,8 +280,11 @@
   block:
     - name: >
         SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | find mounted filesystems
-      ansible.builtin.command: findmnt -knD | awk '{print $2}' | sort -u
+      ansible.builtin.shell: >
+        set -o pipefail && findmnt -knD | awk '{print $2}' | sort -u
       register: cis_ubuntu2404_mounted_filesystems
+      args:
+        executable: "{{ cis_ubuntu2404_shell_executable }}"
       changed_when: false
 
     - name: >
