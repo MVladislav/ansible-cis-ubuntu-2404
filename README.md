@@ -178,17 +178,16 @@ cis_ubuntu2404_config_aide: true
 ### Variables to check and set for own purpose
 
 ```yaml
-# with rule 'cis_ubuntu2404_rule_1_1_1_10' multiple filesystem will be disabled
-# if you know you would need filesystem which not listed below, update the list as needed
-# by default the tasks will check which filesystem are current in use and will not disable them,
-# also when they are listed under 'cis_ubuntu2404_fs_known_vulnerable'
+# With rule 'cis_ubuntu2404_rule_1_1_1_10' multiple filesystem will be disabled if they are vulnerable
+# if you know you would need filesystem, from vulnerable list 'cis_ubuntu2404_fs_known_vulnerable', which not listed below,
+# update the list as needed.
+# By default the tasks will check which filesystem are current in use and will not disable them, also if not listed in 'cis_ubuntu2404_fs_ignored'
 cis_ubuntu2404_fs_ignored: # these filesystem won't be disabled
   - xfs
   - vfat
   - ext2
   - ext3
   - ext4
-  - tmpfs
 
 # choose time synchronization (cis_ubuntu2404_rule_2_3_1_1)
 cis_ubuntu2404_time_synchronization_service: chrony # chrony | systemd-timesyncd

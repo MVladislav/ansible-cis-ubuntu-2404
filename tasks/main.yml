@@ -9,14 +9,12 @@
       This role is tested and can only be run against Ubuntu for versions 24.04.
       {{ ansible_distribution }} {{ ansible_distribution_version }} is not supported.
   when:
-    - not ansible_distribution == "Ubuntu"
-    - >
-      not ansible_distribution_version == "24.04"
+    - not ansible_distribution == "Ubuntu" or not ansible_distribution_version == "24.04"
 
 - name: "CONDITION | check ansible version"
   ansible.builtin.fail:
-    msg: You must use ansible 2.14 or greater!
-  when: not ansible_version.full is version_compare('2.14', '>=')
+    msg: You must use ansible 2.16 or greater!
+  when: not ansible_version.full is version_compare('2.16', '>=')
 
 # ------------------------------------------------------------------------------
 

@@ -402,7 +402,6 @@ cis_ubuntu2404_fs_ignored: # these filesystem won't be disabled
   - ext2
   - ext3
   - ext4
-  - tmpfs
 
 # bootloader password. 'random' makes random password (cis_ubuntu2404_rule_1_4_1)
 cis_ubuntu2404_bootloader_password: random # pragma: allowlist secret

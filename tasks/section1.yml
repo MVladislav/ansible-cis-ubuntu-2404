@@ -296,11 +296,6 @@
       register: cis_ubuntu2404_available_fs_modules
 
     - name: >
-        SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | log available filesystem kernel modules
-      ansible.builtin.debug:
-        msg: "** INFO: Available filesystem kernel modules: '{{ cis_ubuntu2404_available_fs_modules.files | map(attribute='path') | map('basename') }}'"
-
-    - name: >
         SECTION1 | 1.1.1.10 | Ensure unused filesystems kernel modules are not available | check and unload loaded vulnerable filesystems
       ansible.builtin.include_tasks: section1-1_1_1_10.yml
       loop: "{{ cis_ubuntu2404_available_fs_modules.files | map(attribute='path') | map('basename') }}"
