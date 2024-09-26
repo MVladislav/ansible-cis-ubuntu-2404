@@ -916,6 +916,7 @@
   when:
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -948,6 +949,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_2
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -979,6 +981,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_3
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -989,6 +992,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_4
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -1020,6 +1024,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_5
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -1037,6 +1042,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_6
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -1054,6 +1060,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_7
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -1070,6 +1077,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_8
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
@@ -1086,6 +1094,7 @@
     - service_status_gdm3.stdout == "loaded"
     - cis_ubuntu2404_allow_gdm_gui
     - cis_ubuntu2404_rule_1_7_9
+  notify: Update dconf
   tags:
     - rule_1_7
     - server_l1
