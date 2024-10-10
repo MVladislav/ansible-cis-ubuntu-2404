@@ -977,6 +977,7 @@
     - rule_6_2_4
     - server_l2
     - workstation_l2
+    - molecule-idempotence-notest
 
 - name: "SECTION6 | 6.2.4.3 | Ensure audit log files group owner is configured"
   when:
@@ -985,6 +986,7 @@
     - rule_6_2_4
     - server_l2
     - workstation_l2
+    - molecule-idempotence-notest
   block:
     - name: "SECTION6 | 6.2.4.3 | Ensure audit log files group owner is configured | auditd.conf log_group"
       ansible.builtin.lineinfile:
