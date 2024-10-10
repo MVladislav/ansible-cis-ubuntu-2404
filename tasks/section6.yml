@@ -1002,10 +1002,15 @@
         group: "{{ cis_ubuntu2404_audit_log_group }}"
         state: directory
         mode: "0750"
-    - name: "SECTION6 | 6.2.4.3 | Ensure audit log files group owner is configured | set file group"
-      ansible.builtin.file:
-        path: "{{ cis_ubuntu2404_audit_log_path }}/audit.log"
-        group: "{{ cis_ubuntu2404_audit_log_group }}"
+    - name: "SECTION6 | 6.2.4.3 | Ensure audit log files group owner is configured | set files group"
+      ansible.builtin.shell: |
+        set -o pipefail
+        find {{ cis_ubuntu2404_audit_log_path }} -type f \( ! -group {{ cis_ubuntu2404_audit_log_group }} -a ! -group root \) -exec chgrp {{ cis_ubuntu2404_audit_log_group }} {} +
+      args:
+        executable: "{{ cis_ubuntu2404_shell_executable }}"
+      # register: cis_ubuntu2404_audit_files_group_set
+      changed_when: false
+      check_mode: false
 
 - name: "SECTION6 | 6.2.4.4 | Ensure the audit log file directory mode is configured"
   ansible.builtin.file:
