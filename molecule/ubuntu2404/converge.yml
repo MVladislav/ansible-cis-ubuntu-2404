@@ -37,15 +37,6 @@
     # -------------------------
     cis_ubuntu2404_install_aide: false
     cis_ubuntu2404_config_aide: true
-    cis_ubuntu2404_aide_cron:
-      cron_user: root
-      cron_file: aide
-      aide_job: "/usr/bin/aide.wrapper --config /etc/aide/aide.conf --check"
-      aide_minute: 0
-      aide_hour: 5
-      aide_day: "*"
-      aide_month: "*"
-      aide_weekday: "*"
     # -------------------------
     cis_ubuntu2404_journald_system_max_use: 4G
     cis_ubuntu2404_journald_system_keep_free: 8G

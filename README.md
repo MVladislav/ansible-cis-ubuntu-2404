@@ -36,9 +36,11 @@ Tested with:
 
 ## Disclaimer
 
-This role makes **significant changes to your system** that **could break functionality**. \
-This is not an auditing tool but rather a remediation tool to be used after an audit has been conducted. \
-While based on industry-standard security guidelines (CIS), it is recommended to review these changes, especially when applied to existing systems.
+> [!DANGER]
+>
+> This role makes **significant changes to your system** that **could break functionality**. \
+> This is not an auditing tool but rather a remediation tool to be used after an audit has been conducted. \
+> While based on industry-standard security guidelines (CIS), it is recommended to review these changes, especially when applied to existing systems.
 
 This role was **developed against a clean install** of the Operating System. \
 If you are **implementing to an existing system** please **review thoroughly** this role for any **site specific changes** before applying them to production systems.
@@ -125,6 +127,11 @@ cis_ubuntu2404_rule_6_2_4_0: true
 > _change default configured values, to be CIS recommended if needed_
 
 ```yaml
+# NOTE: the way AppAmor with aa-complain/aa-enforce is executed runs into error and stops ansible
+#       for that it is general disable, enable as you need and you know what you are doing
+# Ensure all AppArmor Profiles are complain
+# NOTE: will perform Profiles as complain mode
+cis_ubuntu2404_rule_1_3_1_3: false
 # Ensure all AppArmor Profiles are enforcing
 # NOTE: will perform Profiles as enforcing mode
 cis_ubuntu2404_rule_1_3_1_4: false
@@ -236,17 +243,6 @@ cis_ubuntu2404_password_complexity:
   - key: "lcredit"
     value: "-1"
 
-# AIDE cron settings (cis_ubuntu2404_rule_6_2_2)
-cis_ubuntu2404_aide_cron:
-  cron_user: root
-  cron_file: aide
-  aide_job: "/usr/bin/aide.wrapper --config /etc/aide/aide.conf --check"
-  aide_minute: 0
-  aide_hour: 5
-  aide_day: "*"
-  aide_month: "*"
-  aide_weekday: "*"
-
 # journald log file rotation (cis_ubuntu2404_rule_6_1_1_3)
 cis_ubuntu2404_journald_system_max_use: 4G
 cis_ubuntu2404_journald_system_keep_free: 8G
@@ -265,6 +261,20 @@ cis_ubuntu2404_rule_1_2_1_2: true
 
 # SECTION2 | 2.1.22 | Ensure only approved services are listening on a network interface
 cis_ubuntu2404_rule_2_1_22: true
+
+# SECTION5 | 5.4.2.1 | Ensure root is the only UID 0 account
+cis_ubuntu2404_rule_5_4_2_1: true
+# SECTION5 | 5.4.2.2 | Ensure root is the only GID 0 account
+cis_ubuntu2404_rule_5_4_2_2: true
+# SECTION5 | 5.4.2.3 | Ensure group root is the only GID 0 group
+cis_ubuntu2404_rule_5_4_2_3: true
+# SECTION5 | 5.4.2.5 | Ensure root path integrity
+cis_ubuntu2404_rule_5_4_2_5: true
+# SECTION5 | 5.4.2.7 | Ensure system accounts do not have a valid login shell
+cis_ubuntu2404_rule_5_4_2_7: true
+
+# SECTION6 | 6.1.1.2 | Ensure journald log file access is configured
+cis_ubuntu2404_rule_6_1_1_2: true
 
 # SECTION7 | 7.1.12 | Ensure no files or directories without an owner and a group exist
 cis_ubuntu2404_rule_7_1_12: true
@@ -333,15 +343,6 @@ Example usage can be found also [here](https://github.com/MVladislav/ansible-env
       # -------------------------
       cis_ubuntu2404_install_aide: "{{ cis_setup_aide | default(false) | bool }}"
       cis_ubuntu2404_config_aide: "{{ cis_setup_aide | default(false) | bool }}"
-      cis_ubuntu2404_aide_cron:
-        cron_user: root
-        cron_file: aide
-        aide_job: "/usr/bin/aide.wrapper --config /etc/aide/aide.conf --check"
-        aide_minute: 0
-        aide_hour: 5
-        aide_day: "*"
-        aide_month: "*"
-        aide_weekday: "*"
       # -------------------------
       cis_ubuntu2404_journald_system_max_use: 4G
       cis_ubuntu2404_journald_system_keep_free: 8G
@@ -690,11 +691,11 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 5.4.3.1   | Ensure nologin is not listed in /etc/shells (Automated)                                          | 🟢  |     |     |
 | 5.4.3.2   | Ensure default user shell timeout is configured (Automated)                                      | 🟢  |     |     |
 | 5.4.3.3   | Ensure default user umask is configured (Automated)                                              | 🟢  |     |     |
-| 6         | **Logging and Auditing**                                                                         | 🟢  |     |     |
-| 6.1       | **System Logging**                                                                               | 🟢  |     |     |
-| 6.1.1     | **Configure systemd-journald service**                                                           | 🟢  |     |     |
+| 6         | **Logging and Auditing**                                                                         |     | 🟡  |     |
+| 6.1       | **System Logging**                                                                               |     | 🟡  |     |
+| 6.1.1     | **Configure systemd-journald service**                                                           |     | 🟡  |     |
 | 6.1.1.1   | Ensure journald service is enabled and active (Automated)                                        | 🟢  |     |     |
-| 6.1.1.2   | Ensure journald log file access is configured (Manual)                                           | 🟢  |     |     |
+| 6.1.1.2   | Ensure journald log file access is configured (Manual)                                           |     | 🟡  |     |
 | 6.1.1.3   | Ensure journald log file rotation is configured (Manual)                                         | 🟢  |     |     |
 | 6.1.1.4   | Ensure only one logging system is in use (Automated)                                             | 🟢  |     |     |
 | 6.1.2     | **Configure journald**                                                                           | 🟢  |     |     |

@@ -5,6 +5,32 @@
 
 ## NOTE: implicit in rules below
 # - name: "SECTION4 | 4.1.1 | Ensure a single firewall configuration utility is in use"
+#   when:
+#     - cis_ubuntu2404_rule_4_1_1
+#   tags:
+#     - rule_4_1
+#     - server_l1
+#     - workstation_l1
+#   block:
+#     - name: "SECTION4 | 4.1.1 | Ensure a single firewall configuration utility is in use | get info"
+#       ansible.builtin.shell: apt-key list
+#       args:
+#         executable: "{{ cis_ubuntu2404_shell_executable }}"
+#       register: cis_ubuntu2404_single_firewall_check
+#       changed_when: false
+#       failed_when: false
+#       check_mode: false
+#     - name: "SECTION4 | 4.1.1 | Ensure a single firewall configuration utility is in use | print info"
+#       ansible.builtin.debug:
+#         msg: |
+#           #############################################################################################
+#           Ansible will now set single firewall with configured setup.
+#           #############################################################################################
+#           {{ cis_ubuntu2404_single_firewall_check.stdout_lines | join(cis_ubuntu2404_print_info_join_by) }}
+#           #############################################################################################
+#       when:
+#         - cis_ubuntu2404_single_firewall_check.stdout_lines is defined
+#         - cis_ubuntu2404_single_firewall_check.stdout_lines | length > 0
 
 # ------------------------------------------------------------------------------
 

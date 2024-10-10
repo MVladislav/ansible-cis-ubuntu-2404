@@ -27,7 +27,7 @@
   register: cis_menu_lst
 
 # ------------------------------------------------------------------------------
-# systemctl show <SERVICE> | grep -E "LoadState|ActiveState" | cut -d = -f 2 | tr -d '\n'
+# systemctl show <SERVICE> | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
 # check, for disable and mask, with: <REGISTER>.stdout in ('loadedactive','loadedinactive')
 # check, for only disable, with    : <REGISTER>.stdout in ('loadedactive')
 # - loadedactive
@@ -35,10 +35,20 @@
 # - maskedinactive
 # - not-foundinactive
 
+- name: "PRE | 1.5.3 | check for 'systemd-coredump' socket"
+  ansible.builtin.shell: >
+    set -o pipefail &&
+    systemctl show systemd-coredump.socket | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
+  args:
+    executable: "{{ cis_ubuntu2404_shell_executable }}"
+  register: service_status_coredump
+  changed_when: false
+  check_mode: false
+
 - name: "PRE | 1.5.5 | check for 'apport' service"
   ansible.builtin.shell: >
     set -o pipefail &&
-    systemctl show apport | grep LoadState | cut -d = -f 2
+    systemctl show apport | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
   args:
     executable: "{{ cis_ubuntu2404_shell_executable }}"
   register: service_status_apport
@@ -48,7 +58,7 @@
 - name: "PRE | 1.7 | check for 'gdm3' service"
   ansible.builtin.shell: >
     set -o pipefail &&
-    systemctl show gdm3 | grep LoadState | cut -d = -f 2
+    systemctl show gdm3 | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
   args:
     executable: "{{ cis_ubuntu2404_shell_executable }}"
   register: service_status_gdm3
@@ -58,7 +68,7 @@
 - name: "PRE | 2.3.1.1 | check for 'systemd-timesyncd' service"
   ansible.builtin.shell: >
     set -o pipefail &&
-    systemctl show systemd-timesyncd | grep LoadState | cut -d = -f 2
+    systemctl show systemd-timesyncd | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
   args:
     executable: "{{ cis_ubuntu2404_shell_executable }}"
   register: service_status_systemd_timesyncd
@@ -68,7 +78,7 @@
 - name: "PRE | 2.4.1 | check for 'cron' service"
   ansible.builtin.shell: >
     set -o pipefail &&
-    systemctl show cron | grep LoadState | cut -d = -f 2
+    systemctl show cron | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
   args:
     executable: "{{ cis_ubuntu2404_shell_executable }}"
   register: service_status_cron
@@ -78,7 +88,7 @@
 - name: "PRE | 5.1 | check for 'ssh' service"
   ansible.builtin.shell: >
     set -o pipefail &&
-    systemctl show ssh | grep LoadState | cut -d = -f 2
+    systemctl show ssh | grep -E 'LoadState|ActiveState' | cut -d = -f 2 | tr -d '\n'
   args:
     executable: "{{ cis_ubuntu2404_shell_executable }}"
   register: service_status_ssh
