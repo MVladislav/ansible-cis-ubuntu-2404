@@ -622,7 +622,7 @@
   block:
     - name: "SECTION5 | 5.2.4 | Ensure users must provide password for privilege escalation | update /etc/sudoers"
       ansible.builtin.replace:
-        dest: /etc/sudoers
+        path: /etc/sudoers
         regexp: "^(?!#)(.*NOPASSWD.*)"
         replace: '#\1'
         validate: "visudo -cf %s"
@@ -636,7 +636,7 @@
 
     - name: "SECTION5 | 5.2.4 | Ensure users must provide password for privilege escalation | update '/etc/sudoers.d/*'"
       ansible.builtin.replace:
-        dest: "{{ item.path }}"
+        path: "{{ item.path }}"
         regexp: "^(?!#)(.*NOPASSWD.*)"
         replace: '#\1'
         validate: "visudo -cf %s"
@@ -652,7 +652,7 @@
   block:
     - name: "SECTION5 | 5.2.5 | Ensure re-authentication for privilege escalation is not disabled globally | update /etc/sudoers"
       ansible.builtin.replace:
-        dest: /etc/sudoers
+        path: /etc/sudoers
         regexp: "^(?!#)(.*!authenticate.*)"
         replace: '#\1'
         validate: "visudo -cf %s"
@@ -666,7 +666,7 @@
 
     - name: "SECTION5 | 5.2.5 | Ensure re-authentication for privilege escalation is not disabled globally | update '/etc/sudoers.d/*'"
       ansible.builtin.replace:
-        dest: "{{ item.path }}"
+        path: "{{ item.path }}"
         regexp: "^(?!#)(.*!authenticate.*)"
         replace: '#\1'
         validate: "visudo -cf %s"

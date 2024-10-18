@@ -11,6 +11,23 @@
 
 # ------------------------------------------------------------------------------
 
+- name: "PRE | GRUB | check if default-grub exists"
+  ansible.builtin.stat:
+    path: "{{ cis_ubuntu2404_default_grub_file }}"
+  register: cis_ubuntu2404_default_grub_file_check
+
+- name: "PRE | GRUB | create default-grub from template"
+  ansible.builtin.template:
+    src: grub.j2
+    dest: "{{ cis_ubuntu2404_default_grub_file }}"
+    owner: root
+    group: root
+    mode: "0644"
+  when:
+    - not cis_ubuntu2404_default_grub_file_check.stat.exists
+
+# ------------------------------------------------------------------------------
+
 - name: "PRE | 1.4.2 | check the grub.cfg configuration"
   ansible.builtin.stat:
     path: /boot/grub/grub.cfg
@@ -23,7 +40,7 @@
 
 - name: "PRE | 1.4.2 | check the menu.lst configuration"
   ansible.builtin.stat:
-    path: "/boot/grub/menu.lst"
+    path: /boot/grub/menu.lst
   register: cis_menu_lst
 
 # ------------------------------------------------------------------------------

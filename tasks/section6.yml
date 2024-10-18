@@ -25,13 +25,43 @@
     - server_l1
     - workstation_l1
   block:
-    # - name: "SECTION6 | 6.1.1.2 | Ensure journald log file access is configured | gather information"
-    #   ansible.builtin.file:
-    #   path: /usr/lib/tmpfiles.d/systemd.conf
-    #   state: file
-    #   owner: root
-    #   group: root
-    #   mode: "0640"
+    - name: "SECTION6 | 6.1.1.2 | Ensure journald log file access is configured | configure access"
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        owner: root
+        group: root
+        mode: "{{ item.mode }}"
+      with_items:
+        - path: /run/user
+          mode: "0755"
+        - path: /run/systemd/ask-password
+          mode: "0755"
+        - path: /run/systemd/seats
+          mode: "0755"
+        - path: /run/systemd/sessions
+          mode: "0755"
+        - path: /run/systemd/users
+          mode: "0755"
+        - path: /run/systemd/machines
+          mode: "0755"
+        - path: /run/systemd/shutdown
+          mode: "0755"
+        - path: /run/log
+          mode: "0755"
+
+        - path: /var/lib/systemd
+          mode: "0755"
+        - path: /var/lib/systemd/coredump
+          mode: "0755"
+        - path: /var/lib/systemd/ephemeral-trees
+          mode: "0755"
+        - path: /var/lib/private
+          mode: "0700"
+
+        - path: /var/log/private
+          mode: "0700"
+        - path: /var/cache/private
+          mode: "0700"
     - name: "SECTION6 | 6.1.1.2 | Ensure journald log file access is configured | gather information"
       ansible.builtin.shell: |
         set -o pipefail
@@ -494,13 +524,13 @@
   block:
     - name: "SECTION6 | 6.2.1.3 | Ensure auditing for processes that start prior to auditd is enabled | grub add"
       ansible.builtin.replace:
-        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        path: "{{ cis_ubuntu2404_default_grub_file }}"
         regexp: '^(GRUB_CMDLINE_LINUX=\"(?!.*audit=)[^\"]*)(\".*)'
         replace: '\1 audit=1\2'
       notify: Update-grub
     - name: "SECTION6 | 6.2.1.3 | Ensure auditing for processes that start prior to auditd is enabled | grub replace"
       ansible.builtin.replace:
-        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        path: "{{ cis_ubuntu2404_default_grub_file }}"
         regexp: "audit=0"
         replace: "audit=1"
       notify: Update-grub
@@ -515,13 +545,13 @@
   block:
     - name: "SECTION6 | 6.2.1.4 | Ensure audit_backlog_limit is sufficient | grub add"
       ansible.builtin.replace:
-        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        path: "{{ cis_ubuntu2404_default_grub_file }}"
         regexp: '^(GRUB_CMDLINE_LINUX=\"(?!.*audit_backlog_limit=)[^\"]*)(\".*)'
         replace: '\1 audit_backlog_limit={{ cis_ubuntu2404_audit_backlog_limit }}\2'
       notify: Update-grub
     - name: "SECTION6 | 6.2.1.4 | Ensure audit_backlog_limit is sufficient | grub replace"
       ansible.builtin.replace:
-        dest: "{{ cis_ubuntu2404_default_grub_file }}"
+        path: "{{ cis_ubuntu2404_default_grub_file }}"
         regexp: 'audit_backlog_limit=\d+'
         replace: "audit_backlog_limit={{ cis_ubuntu2404_audit_backlog_limit }}"
       notify: Update-grub

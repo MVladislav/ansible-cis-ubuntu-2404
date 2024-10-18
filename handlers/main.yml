@@ -95,7 +95,9 @@
     masked: false
     state: restarted
   listen: Restart rsyslog
-  when: ansible_virtualization_type != "docker"
+  when:
+    - ansible_virtualization_type != "docker"
+    - cis_ubuntu2404_preferred_capturing_log_method == "rsyslog"
 
 - name: "HANDLER | 6.1.2.1.2 | systemd restart and enable systemd-journal-upload"
   become: true

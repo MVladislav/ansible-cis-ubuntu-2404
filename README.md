@@ -128,7 +128,8 @@ cis_ubuntu2404_rule_6_2_4_0: true
 
 ```yaml
 # NOTE: the way AppAmor with aa-complain/aa-enforce is executed runs into error and stops ansible
-#       for that it is general disable, enable as you need and you know what you are doing
+#       for that it is general disabled.
+#       Enable it as you need and you know what you are doing!
 # Ensure all AppArmor Profiles are complain
 # NOTE: will perform Profiles as complain mode
 cis_ubuntu2404_rule_1_3_1_3: false
@@ -317,11 +318,13 @@ Example usage can be found also [here](https://github.com/MVladislav/ansible-env
       cis_ubuntu2404_section6: true
       cis_ubuntu2404_section7: true
       # -------------------------
+      cis_ubuntu2404_rule_1_1_1_7: false # squashfs - IMPACT: Snap packages utilizes squashfs as a compressed filesystem, disabling squashfs will cause Snap packages to fail.
+      # -------------------------
       cis_ubuntu2404_rule_5_1_24: true
       cis_ubuntu2404_rule_5_1_24_ssh_user: "{{ ansible_user }}"
       cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "<ADD_PUB_KEY>"
       # -------------------------
-      cis_ubuntu2404_rule_1_3_1_3: true # AppArmor complain mode
+      cis_ubuntu2404_rule_1_3_1_3: false # AppArmor complain mode
       cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode
       # -------------------------
       cis_ubuntu2404_set_boot_pass: false # bootloader password (disabled)
@@ -341,8 +344,8 @@ Example usage can be found also [here](https://github.com/MVladislav/ansible-env
           config: iburst
       cis_ubuntu2404_allow_cups: true
       # -------------------------
-      cis_ubuntu2404_install_aide: "{{ cis_setup_aide | default(false) | bool }}"
-      cis_ubuntu2404_config_aide: "{{ cis_setup_aide | default(false) | bool }}"
+      cis_ubuntu2404_install_aide: false
+      cis_ubuntu2404_config_aide: false
       # -------------------------
       cis_ubuntu2404_journald_system_max_use: 4G
       cis_ubuntu2404_journald_system_keep_free: 8G
@@ -350,7 +353,9 @@ Example usage can be found also [here](https://github.com/MVladislav/ansible-env
       cis_ubuntu2404_journald_runtime_keep_free: 512M
       cis_ubuntu2404_journald_max_file_sec: 1month
       # -------------------------
-      cis_ubuntu2404_required_ipv6: "{{ cis_ipv6_required | default(false) | bool }}"
+      cis_ubuntu2404_preferred_capturing_log_method: "rsyslog"
+      # -------------------------
+      cis_ubuntu2404_required_ipv6: true
       cis_ubuntu2404_firewall: ufw
       # -------------------------
       cis_ubuntu2404_cron_allow_users:
@@ -372,7 +377,6 @@ Example usage can be found also [here](https://github.com/MVladislav/ansible-env
           value: "-1"
         - key: "lcredit"
           value: "-1"
-      # -------------------------
 ```
 
 ## Definitions
