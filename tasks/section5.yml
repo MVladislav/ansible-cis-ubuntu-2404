@@ -1702,53 +1702,60 @@
     - workstation_l2
 
 - name: "SECTION5 | 5.4.3.2 | Ensure default user shell timeout is configured"
-  ansible.builtin.lineinfile:
-    dest: "{{ item }}"
-    regexp: '{{ cis_ubuntu2404_regex_base_search }}readonly\s+TMOUT=\d+\s+;\s+export\sTMOUT'
-    line: "readonly TMOUT=900 ; export TMOUT"
-    state: present
-    create: true
-    owner: root
-    group: root
-    mode: "0644"
-  with_items:
-    - /etc/bash.bashrc
-    - /etc/profile
-    - /etc/bashrc
-    - /etc/profile.d/99-tmout.sh
   when:
     - cis_ubuntu2404_rule_5_4_3_2
   tags:
     - rule_5_4_3
     - server_l1
     - workstation_l1
+  block:
+    - name: "SECTION5 | 5.4.3.2 | Ensure default user shell timeout is configured | remove existing TMOUT"
+      ansible.builtin.lineinfile:
+        dest: "{{ item }}"
+        regexp: '{{ cis_ubuntu2404_regex_base_search }}(readonly|export)\s+TMOUT'
+        state: absent
+      with_items:
+        - /etc/bash.bashrc
+        - /etc/profile
+        - /etc/bashrc
+    - name: "SECTION5 | 5.4.3.2 | Ensure default user shell timeout is configured | add TMOUT line"
+      ansible.builtin.lineinfile:
+        dest: /etc/profile.d/99-tmout.sh
+        regexp: '{{ cis_ubuntu2404_regex_base_search }}readonly\s+TMOUT=\d+\s+;\s+export\s+TMOUT'
+        line: "readonly TMOUT=900 ; export TMOUT"
+        state: present
+        create: true
+        owner: root
+        group: root
+        mode: "0644"
 
 - name: "SECTION5 | 5.4.3.3 | Ensure default user umask is configured"
-  ansible.builtin.lineinfile:
-    dest: "{{ item.dest }}"
-    regexp: "{{ cis_ubuntu2404_regex_base_search }}{{ item.field }}"
-    line: "{{ item.field }} 0027"
-    state: present
-    create: true
-    owner: root
-    group: root
-    mode: "0644"
-  with_items:
-    - dest: /etc/profile
-      field: umask
-    - dest: /etc/bash.bashrc
-      field: umask
-    - dest: /etc/bashrc
-      field: umask
-    # - dest: /etc/pam.d/postlogin
-    - dest: /etc/login.defs
-      field: UMASK
-    # - dest: /etc/default/login
-    - dest: /etc/profile.d/99-umask.sh
-      field: umask
   when:
     - cis_ubuntu2404_rule_5_4_3_3
   tags:
     - rule_5_4_3
     - server_l1
     - workstation_l1
+  block:
+    - name: "SECTION5 | 5.4.3.3 | Ensure default user umask is configured | remove existing umask"
+      ansible.builtin.lineinfile:
+        dest: "{{ item }}"
+        regexp: '{{ cis_ubuntu2404_regex_base_search }}umask\s+\d+'
+        state: absent
+      with_items:
+        - /etc/profile
+        - /etc/bash.bashrc
+        - /etc/bashrc
+        # - /etc/pam.d/postlogin
+        - /etc/login.defs
+        # - /etc/default/login
+    - name: "SECTION5 | 5.4.3.3 | Ensure default user umask is configured | add umask line"
+      ansible.builtin.lineinfile:
+        dest: /etc/profile.d/99-umask.sh
+        regexp: '{{ cis_ubuntu2404_regex_base_search }}umask\s+\d+'
+        line: "umask 0027"
+        state: present
+        create: true
+        owner: root
+        group: root
+        mode: "0644"
