@@ -127,14 +127,11 @@ cis_ubuntu2404_rule_6_2_4_0: true
 > _change default configured values, to be CIS recommended if needed_
 
 ```yaml
-# NOTE: the way AppAmor with aa-complain/aa-enforce is executed runs into error and stops ansible
-#       for that it is general disabled.
-#       Enable it as you need and you know what you are doing!
 # Ensure all AppArmor Profiles are complain
-# NOTE: will perform Profiles as complain mode
+# NOTE: will perform Profiles into complain mode
 cis_ubuntu2404_rule_1_3_1_3: false
 # Ensure all AppArmor Profiles are enforcing
-# NOTE: will perform Profiles as enforcing mode
+# NOTE: will perform Profiles into enforcing mode
 cis_ubuntu2404_rule_1_3_1_4: false
 
 # Ensure bootloader password is set
@@ -196,6 +193,13 @@ cis_ubuntu2404_fs_ignored: # these filesystem won't be disabled
   - ext2
   - ext3
   - ext4
+
+# list will be auto gathered if unset (cis_ubuntu2404_rule_1_3_1_3)
+# you can define profiles by your own, which should be set as complain profile
+cis_ubuntu2404_apparmor_update_to_complain_profiles: []
+# list will be auto gathered if unset (cis_ubuntu2404_rule_1_3_1_4)
+# you can define profiles by your own, which should be set as enforce profile
+cis_ubuntu2404_apparmor_update_to_enforce_profiles: []
 
 # choose time synchronization (cis_ubuntu2404_rule_2_3_1_1)
 cis_ubuntu2404_time_synchronization_service: chrony # chrony | systemd-timesyncd

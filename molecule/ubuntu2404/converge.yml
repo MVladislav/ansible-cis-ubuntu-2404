@@ -15,8 +15,8 @@
     cis_ubuntu2404_section6: true
     cis_ubuntu2404_section7: true
     # -------------------------
-    cis_ubuntu2404_rule_1_3_1_3: false # AppArmor complain mode # TODO: disabled for now, needs later tested in deep
-    cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode # TODO: disabled for now, needs later tested in deep
+    cis_ubuntu2404_rule_1_3_1_3: true # AppArmor complain mode
+    cis_ubuntu2404_rule_1_3_1_4: true # AppArmor enforce mode
     # -------------------------
     cis_ubuntu2404_set_boot_pass: false # bootloader password (disabled)
     cis_ubuntu2404_disable_boot_pass: true # bootloader password (disabled with cis_ubuntu2404_set_boot_pass)
