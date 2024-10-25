@@ -23,7 +23,7 @@ kern.*                                  -/var/log/kern.log
 #user.*                                 -/var/log/user.log
 {% endif %}
 
-{% if cis_ubuntu2404_rule_6_1_3_6 is defined and cis_ubuntu2404_rule_6_1_3_6 and cis_ubuntu2404_set_rsyslog_remote is defined and cis_ubuntu2404_set_rsyslog_remote%}
+{% if cis_ubuntu2404_rule_6_1_3_6 is defined and cis_ubuntu2404_rule_6_1_3_6 and cis_ubuntu2404_set_rsyslog_remote_target is defined and cis_ubuntu2404_set_rsyslog_remote_target is not none and cis_ubuntu2404_set_rsyslog_remote is defined and cis_ubuntu2404_set_rsyslog_remote %}
 *.* action(type="omfwd" target="{{ cis_ubuntu2404_set_rsyslog_remote_target }}" port="{{ cis_ubuntu2404_set_rsyslog_remote_port }}" protocol="{{ cis_ubuntu2404_set_rsyslog_remote_protocol }}"
            action.resumeRetryCount="100"
            queue.type="LinkedList" queue.size="1000")

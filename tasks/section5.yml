@@ -526,6 +526,10 @@
       line: "HostKey /etc/ssh/ssh_host_rsa_key"
   when:
     - cis_ubuntu2404_rule_5_1_23
+    - (
+      (cis_ubuntu2404_rule_5_1_24_ssh_pub_key is defined
+      and cis_ubuntu2404_rule_5_1_24_ssh_pub_key is not none)
+      or cis_ubuntu2404_ssh_password_authentication == 'yes')
     - service_status_ssh.stdout in ('loadedactive','loadedinactive')
   tags:
     - rule_5_1
@@ -541,6 +545,7 @@
   when:
     - cis_ubuntu2404_rule_5_1_24
     - cis_ubuntu2404_rule_5_1_24_ssh_pub_key is defined
+    - cis_ubuntu2404_rule_5_1_24_ssh_pub_key is not none
     - service_status_ssh.stdout in ('loadedactive','loadedinactive')
   tags:
     - rule_5_1

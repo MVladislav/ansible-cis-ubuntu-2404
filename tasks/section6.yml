@@ -211,6 +211,7 @@
     - cis_ubuntu2404_rule_6_1_2_1_2
     - cis_ubuntu2404_set_journal_upload | bool
     - cis_ubuntu2404_set_journal_upload_url is defined
+    - cis_ubuntu2404_set_journal_upload_url is not none
     - cis_ubuntu2404_preferred_capturing_log_method == "journald"
   tags:
     - rule_6_1_2_1

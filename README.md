@@ -106,13 +106,15 @@ cis_ubuntu2404_rule_5_1_0: true
 
 # Extend the default sshd_config hardening, which not defined within CIS,
 # by include more configuration based on https://infosec.mozilla.org/guidelines/openssh.html.
-# 'true' by default.
+# 'true' by default, but only runs if
+#  - 'cis_ubuntu2404_rule_5_1_24_ssh_pub_key' is defined or
+#  - 'cis_ubuntu2404_ssh_password_authentication' is equals 'yes'
 cis_ubuntu2404_rule_5_1_23: true
 
 # Avoid SSH login lockout by specifying the user and public key for SSH access.
 # Lockout will happen when 'cis_ubuntu2404_rule_5_1_19', 'cis_ubuntu2404_rule_5_1_20' and 'cis_ubuntu2404_rule_5_1_23' are used.
 # Ensure that a valid SSH public key is provided, or set this rule to false.
-# 'false' by default, when 'cis_ubuntu2404_rule_5_1_24_ssh_pub_key' not defined.
+# 'true' by default, but not executed when 'cis_ubuntu2404_rule_5_1_24_ssh_pub_key' is not defined.
 cis_ubuntu2404_rule_5_1_24: true
 cis_ubuntu2404_rule_5_1_24_ssh_user: "{{ ansible_user }}"
 cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "<ADD_PUB_KEY>"
