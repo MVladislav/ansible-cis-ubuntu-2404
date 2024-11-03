@@ -827,7 +827,7 @@ cis_ubuntu2404_section3_mode_default: "0644"
 cis_ubuntu2404_section5_owner_ssh: root
 cis_ubuntu2404_section5_group_ssh: root
 cis_ubuntu2404_section5_mode_ssh: "0600"
-cis_ubuntu2404_section5_mode_ssh_pub: "1410"
+cis_ubuntu2404_section5_mode_ssh_pub: "0644"
 cis_ubuntu2404_section5_owner_sudo: root
 cis_ubuntu2404_section5_group_sudo: root
 cis_ubuntu2404_section5_mode_sudo: "0400"
