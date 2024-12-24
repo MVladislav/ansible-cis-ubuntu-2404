@@ -59,7 +59,7 @@ repos:
           - --exclude-files=templates/pam/pwhistory.j2
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.21.1
+    rev: v8.22.0
     hooks:
       - id: gitleaks
 
@@ -70,7 +70,7 @@ repos:
 
   # ANSIBLE --------------------------------------------------------------------
   - repo: https://github.com/ansible-community/ansible-lint
-    rev: v24.9.2
+    rev: v24.12.2
     hooks:
       - id: ansible-lint
         name: Ansible-lint

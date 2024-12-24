@@ -23,7 +23,7 @@ cis_ubuntu2404_rule_1_1_1_2: true # freevxfs
 cis_ubuntu2404_rule_1_1_1_3: true # hfs
 cis_ubuntu2404_rule_1_1_1_4: true # hfsplus
 cis_ubuntu2404_rule_1_1_1_5: true # jffs2
-cis_ubuntu2404_rule_1_1_1_6: true # overlayfs
+cis_ubuntu2404_rule_1_1_1_6: true # overlayfs - IMPACT: consider the impact on containerized workloads, as disabling may severely disrupt containerization.
 cis_ubuntu2404_rule_1_1_1_7: true # squashfs - IMPACT: Snap packages utilizes squashfs as a compressed filesystem, disabling squashfs will cause Snap packages to fail.
 cis_ubuntu2404_rule_1_1_1_8: true # udf - IMPACT: Microsoft Azure requires the usage of udf.
 cis_ubuntu2404_rule_1_1_1_9: true # usb-storage - IMPACT: Disabling the usb-storage module will disable any usage of USB storage devices.
