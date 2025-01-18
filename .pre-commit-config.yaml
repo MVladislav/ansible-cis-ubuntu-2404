@@ -5,9 +5,6 @@
 ci:
   autofix_prs: false
 
-default_language_version:
-  python: python3.12
-
 repos:
   # Codespell for spelling corrections
   - repo: https://github.com/codespell-project/codespell
@@ -49,7 +46,7 @@ repos:
           - --exclude-files=templates/pam/pwquality
           - --exclude-files=templates/pam/pwhistory.j2
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.22.1
+    rev: v8.23.1
     hooks:
       - id: gitleaks
 
