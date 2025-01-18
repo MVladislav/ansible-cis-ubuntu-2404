@@ -583,6 +583,21 @@ cis_ubuntu2404_audit_sudo_log_file: /var/log/sudo.log
 # in file (cis_6_2_3_15.rules.j2|cis_6_2_3_16.rules.j2|cis_6_2_3_17.rules.j2|cis_6_2_3_18.rules.j2|cis_6_2_3_19.rules.j2)
 cis_ubuntu2404_audit_uid_min: 1000
 
+# (cis_ubuntu2404_rule_6_2_4_8, cis_ubuntu2404_rule_6_2_4_9, cis_ubuntu2404_rule_6_2_4_10)
+cis_ubuntu2404_audit_tools:
+  - /sbin/auditctl
+  - /sbin/aureport
+  - /sbin/ausearch
+  - /sbin/autrace
+  - /sbin/auditd
+  - /sbin/augenrules
+cis_ubuntu2410_audit_tools:
+  - /sbin/auditctl
+  - /sbin/aureport
+  - /sbin/ausearch
+  - /sbin/auditd
+  - /sbin/augenrules
+
 # AIDE cron settings (cis_ubuntu2404_rule_6_3_2)
 cis_ubuntu2404_aide_conf_file: /etc/aide/aide.conf
 

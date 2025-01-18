@@ -1160,13 +1160,13 @@
   ansible.builtin.file:
     path: "{{ item }}"
     mode: "0755"
-  with_items:
-    - /sbin/auditctl
-    - /sbin/aureport
-    - /sbin/ausearch
-    - /sbin/autrace
-    - /sbin/auditd
-    - /sbin/augenrules
+  loop: >
+    {{
+      cis_ubuntu2410_audit_tools
+      if ansible_distribution_version == "24.10"
+      else cis_ubuntu2404_audit_tools
+      | flatten(levels=1)
+    }}
   when:
     - cis_ubuntu2404_rule_6_2_4_8
   tags:
@@ -1178,13 +1178,13 @@
   ansible.builtin.file:
     path: "{{ item }}"
     owner: root
-  with_items:
-    - /sbin/auditctl
-    - /sbin/aureport
-    - /sbin/ausearch
-    - /sbin/autrace
-    - /sbin/auditd
-    - /sbin/augenrules
+  loop: >
+    {{
+      cis_ubuntu2410_audit_tools
+      if ansible_distribution_version == "24.10"
+      else cis_ubuntu2404_audit_tools
+      | flatten(levels=1)
+    }}
   when:
     - cis_ubuntu2404_rule_6_2_4_9
   tags:
@@ -1196,13 +1196,13 @@
   ansible.builtin.file:
     path: "{{ item }}"
     group: root
-  with_items:
-    - /sbin/auditctl
-    - /sbin/aureport
-    - /sbin/ausearch
-    - /sbin/autrace
-    - /sbin/auditd
-    - /sbin/augenrules
+  loop: >
+    {{
+      cis_ubuntu2410_audit_tools
+      if ansible_distribution_version == "24.10"
+      else cis_ubuntu2404_audit_tools
+      | flatten(levels=1)
+    }}
   when:
     - cis_ubuntu2404_rule_6_2_4_10
   tags:
