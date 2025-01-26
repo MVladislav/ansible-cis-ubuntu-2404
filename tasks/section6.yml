@@ -1163,7 +1163,7 @@
   loop: >
     {{
       cis_ubuntu2410_audit_tools
-      if ansible_distribution_version == "24.10"
+      if ansible_distribution_version is version_compare('24.10', '>=')
       else cis_ubuntu2404_audit_tools
       | flatten(levels=1)
     }}
@@ -1181,7 +1181,7 @@
   loop: >
     {{
       cis_ubuntu2410_audit_tools
-      if ansible_distribution_version == "24.10"
+      if ansible_distribution_version is version_compare('24.10', '>=')
       else cis_ubuntu2404_audit_tools
       | flatten(levels=1)
     }}
@@ -1199,7 +1199,7 @@
   loop: >
     {{
       cis_ubuntu2410_audit_tools
-      if ansible_distribution_version == "24.10"
+      if ansible_distribution_version is version_compare('24.10', '>=')
       else cis_ubuntu2404_audit_tools
       | flatten(levels=1)
     }}
