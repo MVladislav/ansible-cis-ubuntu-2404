@@ -18,7 +18,7 @@
   ansible.builtin.apt:
     name: "{{ apt_removed_packages.stdout_lines }}"
     state: absent
-    purge: true
+    purge: false
   changed_when: false
   # failed_when: false
   when:
