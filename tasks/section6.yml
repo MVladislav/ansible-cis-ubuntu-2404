@@ -471,18 +471,24 @@
       register: cis_ubuntu2404_logfiles
     - name: "SECTION6 | 6.1.4.1 | Ensure access to all logfiles has been configured | set logfile access"
       ansible.builtin.file:
-        dest: "{{ item.path }}"
+        path: "{{ item.path }}"
         state: file
-        owner: "{{ logfiles_item_owner | default('root') }}"
-        group: "{{ logfiles_item_group | default('adm') }}"
-        mode: "{{ logfiles_item_mode | default('0640') }}"
+        owner: "{{ matching_entry.owner | default('root') }}"
+        group: "{{ matching_entry.group | default('adm') }}"
+        mode: "{{ matching_entry.mode | default('0640') }}"
       loop: "{{ cis_ubuntu2404_logfiles.files }}"
       loop_control:
-        label: "{{ item.path }}"
+        label: "{{ item.path }} :: {{ matching_entry.owner | default('root') }}:{{ matching_entry.group | default('adm') }} :: {{ matching_entry.mode | default('0640') }}"
       vars:
-        logfiles_item_owner: "{{ cis_ubuntu2404_logfiles_access | selectattr('files', 'search', item.path | basename) | map(attribute='owner') | first }}"
-        logfiles_item_group: "{{ cis_ubuntu2404_logfiles_access | selectattr('files', 'search', item.path | basename) | map(attribute='group') | first }}"
-        logfiles_item_mode: "{{ cis_ubuntu2404_logfiles_access | selectattr('files', 'search', item.path | basename) | map(attribute='mode') | first }}"
+        filename: "{{ item.path | basename }}"
+        matching_entry: >-
+          {%- set ns = namespace(found={}) -%}
+          {%- for entry in cis_ubuntu2404_logfiles_access -%}
+            {%- if not ns.found and filename is match(entry.files) -%}
+              {%- set ns.found = entry -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {{ ns.found }}
 
 # ------------------------------------------------------------------------------
 

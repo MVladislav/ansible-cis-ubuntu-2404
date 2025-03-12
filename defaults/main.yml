@@ -791,26 +791,34 @@ cis_ubuntu2404_2_2_rule_set:
 
 # SPECIAL multi similar CIS rules set for 6.1.4.1
 cis_ubuntu2404_logfiles_access:
-  - files: 'lastlog|lastlog\.*|wtmp|wtmp\.*|wtmp-*|btmp|btmp\.*|btmp-*|README'
+  - files: '^(?:lastlog(?:\..*|-.*)?|wtmp(?:\..*|-.*)?|btmp(?:\..*|-.*)?|README)$'
     mode: "0664"
     owner: root
     group: utmp # root|utmp
-  - files: 'secure|auth\.log|syslog|messages'
+  - files: '^(?:cloud-init\.log.*|localmessages.*|waagent\.log.*)$'
+    mode: "0644"
+    owner: syslog # root|syslog
+    group: "{{ cis_ubuntu2404_audit_log_group }}" # root|adm
+  - files: '^(?:secure(?:\..*|-.*)?|auth\.log|syslog|messages)$'
     mode: "0640"
     owner: syslog # root|syslog
     group: "{{ cis_ubuntu2404_audit_log_group }}" # root|adm
-  - files: "SSSD|sssd"
+  - files: "^(?:SSSD|sssd)$"
     mode: "0660"
     owner: sssd # root|sssd
     group: sssd # root|sssd
-  - files: "gdm|gdm3"
+  - files: "^gdm(?:3)?$"
     mode: "0660"
     owner: root
     group: gdm # root|gdm|gdm3
-  - files: '*\.journal|*\.journal~'
+  - files: '^.*\.journal(?:~)?$'
     mode: "0640"
     owner: root
     group: systemd-journal # root|systemd-journal
+  - files: '^aide(?:init)?(?:\..*)?$'
+    mode: "0640"
+    owner: _aide
+    group: "{{ cis_ubuntu2404_audit_log_group }}" # _aide|adm
 
 # ------------------------------------------------------------------------------
 
