@@ -425,7 +425,7 @@ cis_ubuntu2404_time_synchronization_time_server:
   - uri: ntp.ubuntu.com
     config: iburst
 # general path for sysctl conf file
-cis_ubuntu2404_sysctl_file_path: /etc/sysctl.conf
+cis_ubuntu2404_sysctl_file_path: /etc/sysctl.d/99-sysctl.conf
 # cron allow users (cis_ubuntu2404_rule_2_4_1_8)
 cis_ubuntu2404_cron_allow_users:
   - root
