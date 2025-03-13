@@ -38,7 +38,7 @@ jobs:
           python3 -m pip install --upgrade pip ${{ matrix.python-version.param }}
           python3 -m pip install -r requirements.txt ${{ matrix.python-version.param }}
 
-      - name: Test with molecule
+      - name: Run Molecule Test
         run: molecule test -s ${{ matrix.molecule-os }}
         env:
           PY_COLOR: "1"

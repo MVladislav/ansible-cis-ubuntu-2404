@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: true
   tasks:
-    - name: "Include ansible-cis-ubuntu-2404"
+    - name: "Run role"
       ansible.builtin.include_role:
-        name: "ansible-cis-ubuntu-2404"
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
   vars:
     cis_ubuntu2404_section1: true
     cis_ubuntu2404_section2: true
@@ -14,6 +14,10 @@
     cis_ubuntu2404_section5: true
     cis_ubuntu2404_section6: true
     cis_ubuntu2404_section7: true
+    # -------------------------
+    cis_ubuntu2404_rule_5_1_24: true
+    cis_ubuntu2404_rule_5_1_24_ssh_user: root
+    cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "ssh-ed25519 aXdhc2hlcmVleGFtcGxlMTMzNwo= example"
     # -------------------------
     cis_ubuntu2404_rule_1_3_1_3: false # AppArmor complain mode
     cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode
@@ -44,7 +48,9 @@
     cis_ubuntu2404_journald_runtime_keep_free: 512M
     cis_ubuntu2404_journald_max_file_sec: 1month
     # -------------------------
-    cis_ubuntu2404_required_ipv6: false
+    cis_ubuntu2404_preferred_capturing_log_method: rsyslog
+    # -------------------------
+    cis_ubuntu2404_required_ipv6: true
     cis_ubuntu2404_firewall: ufw
     # -------------------------
     cis_ubuntu2404_cron_allow_users:
