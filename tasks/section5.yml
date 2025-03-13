@@ -538,7 +538,7 @@
 
 - name: "SECTION5 | 5.1.24 | EXTENDED | Ensure sshd public key is added"
   ansible.posix.authorized_key:
-    user: "{{ ansible_user }}"
+    user: "{{ cis_ubuntu2404_rule_5_1_24_ssh_user }}"
     key: "{{ cis_ubuntu2404_rule_5_1_24_ssh_pub_key }}"
     state: present
     exclusive: true
