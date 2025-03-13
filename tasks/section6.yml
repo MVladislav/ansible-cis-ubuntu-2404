@@ -261,6 +261,7 @@
     regexp: "{{ cis_ubuntu2404_regex_base_search }}ForwardToSyslog{{ cis_ubuntu2404_regex_base_search_equals }}"
     line: "ForwardToSyslog=no"
     state: present
+    create: true
     owner: root
     group: root
     mode: "0640"
@@ -350,7 +351,7 @@
     create: true
     owner: root
     group: root
-    mode: "0644"
+    mode: "0640"
   notify: Restart systemd-journald
   when:
     - cis_ubuntu2404_rule_6_1_3_3
