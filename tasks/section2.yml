@@ -187,6 +187,7 @@
   when:
     - cis_ubuntu2404_rule_2_4_1_1
     - service_status_cron.stdout is match('.*(inactive|masked).*')
+    - service_status_cron.stdout is not match('.*(not-found).*')
   tags:
     - rule_2_4_1
     - server_l1
