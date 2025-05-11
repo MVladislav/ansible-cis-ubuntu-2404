@@ -407,22 +407,6 @@
 
 # ------------------------------------------------------------------------------
 
-- name: "SECTION4 | 4.4.2.1 | Ensure iptables default deny firewall policy"
-  ansible.builtin.iptables:
-    chain: "{{ item }}"
-    policy: DROP
-  loop:
-    - INPUT
-    - OUTPUT
-    - FORWARD
-  when:
-    - cis_ubuntu2404_rule_4_4_2_1
-    - cis_ubuntu2404_firewall == "iptables"
-  tags:
-    - rule_4_3_2
-    - server_l1
-    - workstation_l1
-
 - name: "SECTION4 | 4.4.2.2 | Ensure iptables loopback traffic is configured"
   when:
     - cis_ubuntu2404_rule_4_4_2_2
@@ -496,23 +480,6 @@
         jump: ACCEPT
 
 # ------------------------------------------------------------------------------
-
-- name: "SECTION4 | 4.4.3.1 | Ensure ip6tables default deny firewall policy"
-  ansible.builtin.iptables:
-    chain: "{{ item }}"
-    policy: DROP
-    ip_version: ipv6
-  loop:
-    - INPUT
-    - OUTPUT
-    - FORWARD
-  when:
-    - cis_ubuntu2404_rule_4_4_3_1
-    - cis_ubuntu2404_firewall == "iptables"
-  tags:
-    - rule_4_3_3
-    - server_l1
-    - workstation_l1
 
 - name: "SECTION4 | 4.4.3.2 | Ensure ip6tables loopback traffic is configured"
   when:
@@ -591,3 +558,38 @@
         ctstate: NEW
         jump: ACCEPT
         ip_version: ipv6
+
+# ------------------------------------------------------------------------------
+
+- name: "SECTION4 | 4.4.2.1 | Ensure iptables default deny firewall policy"
+  ansible.builtin.iptables:
+    chain: "{{ item }}"
+    policy: DROP
+  loop:
+    - INPUT
+    - OUTPUT
+    - FORWARD
+  when:
+    - cis_ubuntu2404_rule_4_4_2_1
+    - cis_ubuntu2404_firewall == "iptables"
+  tags:
+    - rule_4_4
+    - server_l1
+    - workstation_l1
+
+- name: "SECTION4 | 4.4.3.1 | Ensure ip6tables default deny firewall policy"
+  ansible.builtin.iptables:
+    chain: "{{ item }}"
+    policy: DROP
+    ip_version: ipv6
+  loop:
+    - INPUT
+    - OUTPUT
+    - FORWARD
+  when:
+    - cis_ubuntu2404_rule_4_4_3_1
+    - cis_ubuntu2404_firewall == "iptables"
+  tags:
+    - rule_4_4
+    - server_l1
+    - workstation_l1
