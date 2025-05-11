@@ -43,6 +43,7 @@
   community.general.modprobe:
     name: "{{ cis_ubuntu2404_fs_module_file }}"
     state: absent
+  failed_when: false
   when:
     - cis_ubuntu2404_lsmod_output.rc == 0
     - not cis_ubuntu2404_is_fs_mounted | bool
