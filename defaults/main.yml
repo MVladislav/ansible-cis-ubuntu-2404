@@ -819,6 +819,10 @@ cis_ubuntu2404_logfiles_access:
     mode: "0640"
     owner: _aide
     group: "{{ cis_ubuntu2404_audit_log_group }}" # _aide|adm
+  - files: '^(ufw\.log|kernel\.log)$'
+    mode: "0640"
+    owner: syslog # root|syslog
+    group: "{{ cis_ubuntu2404_audit_log_group }}" # _aide|adm
 
 # ------------------------------------------------------------------------------
 
