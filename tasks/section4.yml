@@ -411,6 +411,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_2_2
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv4
   tags:
     - rule_4_4
     - server_l1
@@ -436,6 +437,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_2_3
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv4
   tags:
     - rule_4_4
     - server_l1
@@ -466,6 +468,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_2_4
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv4
   tags:
     - rule_4_4
     - server_l1
@@ -485,6 +488,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_3_2
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv6
   tags:
     - rule_4_4
     - server_l1
@@ -513,6 +517,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_3_3
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv6
   tags:
     - rule_4_4
     - server_l1
@@ -545,6 +550,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_3_4
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv6
   tags:
     - rule_4_4
     - server_l1
@@ -572,6 +578,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_2_1
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv4
   tags:
     - rule_4_4
     - server_l1
@@ -589,6 +596,7 @@
   when:
     - cis_ubuntu2404_rule_4_4_3_1
     - cis_ubuntu2404_firewall == "iptables"
+  notify: Save iptables ipv6
   tags:
     - rule_4_4
     - server_l1

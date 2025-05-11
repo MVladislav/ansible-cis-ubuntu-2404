@@ -157,3 +157,17 @@
   failed_when: false
   listen: Load audit rules
   notify: Restart auditd
+
+# ------------------------------------------------------------------------------
+
+- name: "HANDLER | 4.4.2.* | Ensure iptables for ipv4 is preserved"
+  become: true
+  ansible.builtin.command: iptables-save --file /etc/iptables/rules.v4
+  changed_when: false
+  listen: Save iptables ipv4
+
+- name: "HANDLER | 4.4.3.* | Ensure iptables for ipv6 is preserved"
+  become: true
+  ansible.builtin.command: ip6tables-save --file /etc/iptables/rules.v6
+  changed_when: false
+  listen: Save iptables ipv6
