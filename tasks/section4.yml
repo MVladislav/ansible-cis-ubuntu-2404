@@ -43,7 +43,7 @@
     - cis_ubuntu2404_rule_4_2_1
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
 
@@ -56,7 +56,7 @@
     - cis_ubuntu2404_rule_4_2_2
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
 
@@ -65,7 +65,7 @@
     - cis_ubuntu2404_rule_4_2_3
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
   block:
@@ -96,7 +96,7 @@
     - cis_ubuntu2404_rule_4_2_4
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
   block:
@@ -137,7 +137,7 @@
     - cis_ubuntu2404_rule_4_2_5
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
 
@@ -154,7 +154,7 @@
     - cis_ubuntu2404_rule_4_2_6
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
 
@@ -163,7 +163,7 @@
     - cis_ubuntu2404_rule_4_2_7
     - cis_ubuntu2404_firewall == "ufw"
   tags:
-    - rule_4_1
+    - rule_4_2
     - server_l1
     - workstation_l1
   block:
@@ -195,7 +195,7 @@
     - cis_ubuntu2404_rule_4_3_1
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -208,7 +208,7 @@
     - cis_ubuntu2404_rule_4_3_2
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -217,7 +217,7 @@
     - cis_ubuntu2404_rule_4_3_3
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
   block:
@@ -239,7 +239,7 @@
     - cis_ubuntu2404_rule_4_3_4
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -256,7 +256,7 @@
     - cis_ubuntu2404_rule_4_3_5
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -265,7 +265,7 @@
     - cis_ubuntu2404_rule_4_3_6
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
   block:
@@ -313,7 +313,7 @@
     - cis_ubuntu2404_rule_4_3_7
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -330,7 +330,7 @@
     - cis_ubuntu2404_rule_4_3_8
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -345,7 +345,7 @@
     - cis_ubuntu2404_rule_4_3_9
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -358,7 +358,7 @@
     - cis_ubuntu2404_rule_4_3_10
     - cis_ubuntu2404_firewall == "nftables"
   tags:
-    - rule_4_2
+    - rule_4_3
     - server_l1
     - workstation_l1
 
@@ -375,7 +375,7 @@
     - cis_ubuntu2404_rule_4_4_1_1
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_1
+    - rule_4_4
     - server_l1
     - workstation_l1
 
@@ -388,7 +388,7 @@
     - cis_ubuntu2404_rule_4_4_1_2
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_1
+    - rule_4_4
     - server_l1
     - workstation_l1
 
@@ -401,7 +401,7 @@
     - cis_ubuntu2404_rule_4_4_1_3
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_1
+    - rule_4_4
     - server_l1
     - workstation_l1
 
@@ -412,7 +412,7 @@
     - cis_ubuntu2404_rule_4_4_2_2
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_2
+    - rule_4_4
     - server_l1
     - workstation_l1
   block:
@@ -437,7 +437,7 @@
     - cis_ubuntu2404_rule_4_4_2_3
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_2
+    - rule_4_4
     - server_l1
     - workstation_l1
   block:
@@ -467,7 +467,7 @@
     - cis_ubuntu2404_rule_4_4_2_4
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_2
+    - rule_4_4
     - server_l1
     - workstation_l1
   block:
@@ -486,7 +486,7 @@
     - cis_ubuntu2404_rule_4_4_3_2
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_3
+    - rule_4_4
     - server_l1
     - workstation_l1
   block:
@@ -514,7 +514,7 @@
     - cis_ubuntu2404_rule_4_4_3_3
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_3
+    - rule_4_4
     - server_l1
     - workstation_l1
   block:
@@ -546,7 +546,7 @@
     - cis_ubuntu2404_rule_4_4_3_4
     - cis_ubuntu2404_firewall == "iptables"
   tags:
-    - rule_4_3_3
+    - rule_4_4
     - server_l1
     - workstation_l1
   block:
