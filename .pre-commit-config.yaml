@@ -46,7 +46,7 @@ repos:
           - --exclude-files=templates/pam/pwquality
           - --exclude-files=templates/pam/pwhistory.j2
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.27.2
+    rev: v8.28.0
     hooks:
       - id: gitleaks
 
