@@ -15,12 +15,20 @@
     cis_ubuntu2404_section6: true
     cis_ubuntu2404_section7: true
     # -------------------------
+    cis_ubuntu2404_rule_1_1_1_4: true # hfsplus
+    cis_ubuntu2404_rule_1_1_1_6: true # overlayfs - IMPACT: consider the impact on containerized workloads, as disabling may severely disrupt containerization.
+    cis_ubuntu2404_rule_1_1_1_7: true # squashfs - IMPACT: Snap packages utilizes squashfs as a compressed filesystem, disabling squashfs will cause Snap packages to fail.
+    # -------------------------
     cis_ubuntu2404_rule_5_1_24: true
     cis_ubuntu2404_rule_5_1_24_ssh_user: root
     cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "ssh-ed25519 aXdhc2hlcmVleGFtcGxlMTMzNwo= example"
     # -------------------------
     cis_ubuntu2404_rule_1_3_1_3: false # AppArmor complain mode
     cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode
+    # cis_ubuntu2404_apparmor_update_to_complain_profiles:
+    #   - firefox
+    # cis_ubuntu2404_apparmor_update_to_enforce_profiles:
+    #   - firefox
     # -------------------------
     cis_ubuntu2404_set_boot_pass: false # bootloader password (disabled)
     cis_ubuntu2404_disable_boot_pass: true # bootloader password (disabled with cis_ubuntu2404_set_boot_pass)
@@ -29,6 +37,7 @@
     cis_ubuntu2404_rule_3_1_3_remove: true # bluetooth service
     # -------------------------
     cis_ubuntu2404_allow_gdm_gui: false
+    cis_ubuntu2404_rule_1_7_3: true # Ensure GDM disable-user-list
     cis_ubuntu2404_allow_autofs: false # Disable auto mount, set to true to allow it and not disable
     cis_ubuntu2404_rule_1_1_1_9: true # Disable USB Storage, set to false to not disable
     cis_ubuntu2404_time_synchronization_service: chrony # chrony | systemd-timesyncd
@@ -60,7 +69,8 @@
     # -------------------------
     cis_ubuntu2404_faillock_deny: 5
     cis_ubuntu2404_faillock_unlock_time: 900
-    cis_ubuntu2404_faillock_minlen: 14
+    cis_ubuntu2404_faillock_minlen: 8
+    cis_ubuntu2404_password_pass_max_days: 730 # 365
     cis_ubuntu2404_password_complexity:
       - key: "minclass"
         value: "3"
