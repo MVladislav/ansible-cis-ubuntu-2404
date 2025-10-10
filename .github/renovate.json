@@ -9,6 +9,13 @@
   "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
+      "addLabels": ["github_actions"],
+      "matchManagers": ["github-actions"],
+      "rangeStrategy": "pin",
+      "groupName": "GitHub Actions",
+      "automerge": false
+    },
+    {
       "addLabels": ["pre-commit"],
       "matchManagers": ["pre-commit"],
       "rangeStrategy": "pin",
