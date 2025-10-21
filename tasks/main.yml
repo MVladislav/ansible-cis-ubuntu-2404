@@ -6,11 +6,11 @@
 - name: "CONDITION | check OS version and family"
   ansible.builtin.fail:
     msg: >
-      This role is tested and can only be run against Ubuntu for versions 24.04, 24.10 and 25.04.
+      This role is tested and can only be run against Ubuntu for versions 24.04, 24.10, 25.04 and 25.10.
       {{ ansible_distribution }} {{ ansible_distribution_version }} is not supported.
   when:
     - not ansible_distribution == "Ubuntu" or
-      not ansible_distribution_version in ("24.04", "24.10", "25.04")
+      not ansible_distribution_version in ("24.04", "24.10", "25.04", "25.10")
 
 - name: "CONDITION | check ansible version"
   ansible.builtin.fail:
