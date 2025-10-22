@@ -300,8 +300,8 @@
         src: cron.allow.j2
         dest: /etc/cron.allow
         owner: "{{ cis_ubuntu2404_section2_owner_default }}"
-        group: "{{ cis_ubuntu2404_section2_group_default }}"
-        mode: "{{ cis_ubuntu2404_section2_mode_cron }}"
+        group: "{{ cis_ubuntu2404_section2_group_crontab }}"
+        mode: "{{ cis_ubuntu2404_section2_mode_crontab }}"
 
 # ------------------------------------------------------------------------------
 
@@ -323,5 +323,5 @@
         src: at.allow.j2
         dest: /etc/at.allow
         owner: "{{ cis_ubuntu2404_section2_owner_default }}"
-        group: "{{ cis_ubuntu2404_section2_group_etc_at_allow }}"
-        mode: "{{ cis_ubuntu2404_section2_mode_cron }}"
+        group: "{{ cis_ubuntu2404_section2_group_at_allow }}"
+        mode: "{{ cis_ubuntu2404_section2_mode_at_allow }}"

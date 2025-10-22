@@ -835,10 +835,13 @@ cis_ubuntu2404_section1_mode_etc_dconf_folder: "0755"
 # SECTION2
 cis_ubuntu2404_section2_owner_default: root
 cis_ubuntu2404_section2_group_default: root
-cis_ubuntu2404_section2_group_etc_at_allow: daemon
 cis_ubuntu2404_section2_mode_default: "0644"
 cis_ubuntu2404_section2_mode_cron: "0600"
 cis_ubuntu2404_section2_mode_cron_folder: "0700"
+cis_ubuntu2404_section2_group_crontab: crontab
+cis_ubuntu2404_section2_mode_crontab: "0640"
+cis_ubuntu2404_section2_group_at_allow: daemon
+cis_ubuntu2404_section2_mode_at_allow: "0640"
 
 # SECTION3
 cis_ubuntu2404_section3_owner_default: root
