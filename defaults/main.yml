@@ -480,13 +480,8 @@ cis_ubuntu2404_ssh_log_level: VERBOSE # VERBOSE | INFO
 # MACs (cis_ubuntu2404_rule_5_1_15)
 cis_ubuntu2404_ssh_macs:
   - hmac-sha2-512 # NOTE: FIPS 140 approved
-  # - hmac-sha2-384 # NOTE: FIPS 140 approved - note available under ubuntu
   - hmac-sha2-256 # NOTE: FIPS 140 approved
   - hmac-sha1 # NOTE: FIPS 140 approved
-  - umac-128@openssh.com
-  # - hmac-sha2-512-etm@openssh.com # NOTE: (CVE-2023-48795)
-  # - hmac-sha2-256-etm@openssh.com # NOTE: (CVE-2023-48795)
-  # - umac-128-etm@openssh.com # NOTE: (CVE-2023-48795)
 # (cis_ubuntu2404_rule_5_1_16)
 cis_ubuntu2404_ssh_max_auth_tries: 4
 # (cis_ubuntu2404_rule_5_1_17)
