@@ -37,13 +37,73 @@
         replace: "ipv6.disable={{ 0 if cis_ubuntu2404_required_ipv6 else 1 }}"
       notify: Update-grub
 
-# - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled"
-#   when:
-#     - cis_ubuntu2404_rule_3_1_2
-#   tags:
-#     - rule_3_1
-#     - server_l1
-#     - workstation_l2
+- name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled"
+  when:
+    - cis_ubuntu2404_rule_3_1_2
+  tags:
+    - rule_3_1_2
+    - server_l1
+    - workstation_l2
+  block:
+    - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled | gather wireless .ko files"
+      ansible.builtin.find:
+        paths: "/lib/modules/{{ ansible_kernel }}/kernel/drivers/net/wireless"
+        patterns: "*.ko"
+        file_type: file
+        recurse: true
+      register: cis_ubuntu2404_wireless_find
+      changed_when: false
+
+    - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled | normalize list of modules"
+      ansible.builtin.set_fact:
+        cis_ubuntu2404_wireless_drivers: >-
+          {{
+            (cis_ubuntu2404_wireless_find.files | default([])
+              | map(attribute='path') | map('basename')
+              | map('regex_replace','\\.ko$','')) | list | unique | sort
+          }}
+
+    - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled | ensure 'install <module> /bin/false' exists"
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis-wireless.conf
+        regexp: '{{ cis_ubuntu2404_regex_base_search }}install {{ item }}(\s|$)'
+        line: "install {{ item }} /bin/false"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      loop: "{{ cis_ubuntu2404_wireless_drivers | default([]) }}"
+      when:
+        - cis_ubuntu2404_wireless_drivers | length > 0
+      loop_control:
+        label: "{{ item }}"
+      register: cis_ubuntu2404_wireless_install_results
+
+    - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled | ensure 'blacklist <module>' exists"
+      ansible.builtin.lineinfile:
+        dest: /etc/modprobe.d/cis-wireless.conf
+        regexp: "{{ cis_ubuntu2404_regex_base_search }}blacklist {{ item }}$"
+        line: "blacklist {{ item }}"
+        state: present
+        create: true
+        owner: "{{ cis_ubuntu2404_section1_owner_default }}"
+        group: "{{ cis_ubuntu2404_section1_group_default }}"
+        mode: "{{ cis_ubuntu2404_section1_mode_default }}"
+      loop: "{{ cis_ubuntu2404_wireless_drivers | default([]) }}"
+      when:
+        - cis_ubuntu2404_wireless_drivers | length > 0
+      loop_control:
+        label: "{{ item }}"
+      register: cis_ubuntu2404_wireless_blacklist_results
+
+    - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled | run depmod"
+      ansible.builtin.command:
+        cmd: depmod -a
+      when: >
+        (cis_ubuntu2404_wireless_install_results is defined and cis_ubuntu2404_wireless_install_results.changed)
+        or (cis_ubuntu2404_wireless_blacklist_results is defined and cis_ubuntu2404_wireless_blacklist_results.changed)
+      changed_when: false
 
 - name: "SECTION3 | 3.1.3 | Ensure bluetooth services are not in use"
   ansible.builtin.include_tasks: sub-task-services-clean.yml

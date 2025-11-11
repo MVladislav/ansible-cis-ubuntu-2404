@@ -140,6 +140,9 @@ cis_ubuntu2404_rule_1_3_1_4: false
 cis_ubuntu2404_set_boot_pass: false
 cis_ubuntu2404_disable_boot_pass: true
 
+# Ensure wireless interfaces are not available
+cis_ubuntu2404_rule_3_1_2: false
+
 # Active journal send logs to a remote log host
 # do not forget set related variables 'cis_ubuntu2404_set_journal_upload_*'
 cis_ubuntu2404_set_journal_upload: false
@@ -409,11 +412,11 @@ For more specific description see the **CIS pdf** file on **page 18**.
 
 | Key                                                  | Count |
 | :--------------------------------------------------- | :---- |
-| 🟢 Implemented                                       | 280   |
+| 🟢 Implemented                                       | 281   |
 | 🟡 Partly Implemented or print info for manual check | 13    |
-| 🔴 Not Implemented                                   | 20    |
-| Total                                                | 313   |
-| Coverage (Implemented/Partly vs Total)               | 93.61 |
+| 🔴 Not Implemented                                   | 18    |
+| Total                                                | 312   |
+| Coverage (Implemented/Partly vs Total)               | 94.23 |
 
 | ID        | CIS Benchmark Recommendation Set                                                                 | Yes | Y/N | No  |
 | :-------- | :----------------------------------------------------------------------------------------------- | :-: | :-: | :-: |
@@ -556,10 +559,10 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 2.4.1.8   | Ensure crontab is restricted to authorized users (Automated)                                     | 🟢  |     |     |
 | 2.4.2     | **Configure at**                                                                                 | 🟢  |     |     |
 | 2.4.2.1   | Ensure at is restricted to authorized users (Automated)                                          | 🟢  |     |     |
-| 3         | **Network**                                                                                      |     | 🟡  |     |
-| 3.1       | **Configure Network Devices**                                                                    |     | 🟡  |     |
+| 3         | **Network**                                                                                      | 🟢  |     |     |
+| 3.1       | **Configure Network Devices**                                                                    | 🟢  |     |     |
 | 3.1.1     | Ensure IPv6 status is identified (Manual)                                                        | 🟢  |     |     |
-| 3.1.2     | Ensure wireless interfaces are disabled (Automated)                                              |     |     | 🔴  |
+| 3.1.2     | Ensure wireless interfaces are disabled (Automated)                                              | 🟢  |     |     |
 | 3.1.3     | Ensure bluetooth services are not in use (Automated)                                             | 🟢  |     |     |
 | 3.2       | **Configure Network Kernel Modules**                                                             | 🟢  |     |     |
 | 3.2.1     | Ensure dccp kernel module is not available (Automated)                                           | 🟢  |     |     |

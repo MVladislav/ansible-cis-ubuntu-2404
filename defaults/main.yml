@@ -137,7 +137,7 @@ cis_ubuntu2404_rule_2_4_1_8: true
 cis_ubuntu2404_rule_2_4_2_1: true
 ## SECTION 3 rules
 cis_ubuntu2404_rule_3_1_1: true # NOTE: depends also on 'cis_ubuntu2404_required_ipv6'
-cis_ubuntu2404_rule_3_1_2: true
+cis_ubuntu2404_rule_3_1_2: false # NOTE: disabled
 cis_ubuntu2404_rule_3_1_3: true
 cis_ubuntu2404_rule_3_1_3_remove: true
 cis_ubuntu2404_rule_3_2_1: true
