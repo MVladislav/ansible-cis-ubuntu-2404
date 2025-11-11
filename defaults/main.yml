@@ -139,7 +139,7 @@ cis_ubuntu2404_rule_2_4_2_1: true
 cis_ubuntu2404_rule_3_1_1: true # NOTE: depends also on 'cis_ubuntu2404_required_ipv6'
 cis_ubuntu2404_rule_3_1_2: false # NOTE: disabled
 cis_ubuntu2404_rule_3_1_3: true
-cis_ubuntu2404_rule_3_1_3_remove: true
+cis_ubuntu2404_rule_3_1_3_remove: true # NOTE: remove 'bluez' package
 cis_ubuntu2404_rule_3_2_1: true
 cis_ubuntu2404_rule_3_2_2: true
 cis_ubuntu2404_rule_3_2_3: true
@@ -324,7 +324,6 @@ cis_ubuntu2404_rule_6_2_4_10: true
 cis_ubuntu2404_rule_6_3_1: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
 cis_ubuntu2404_rule_6_3_2: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
 cis_ubuntu2404_rule_6_3_3: true # NOTE: depends also on 'cis_ubuntu2404_install_aide|cis_ubuntu2404_config_aide'
-
 ## SECTION 7 rules
 cis_ubuntu2404_rule_7_1_1: true
 cis_ubuntu2404_rule_7_1_2: true
@@ -580,6 +579,12 @@ cis_ubuntu2404_audit_uid_min: 1000
 
 # (cis_ubuntu2404_rule_6_2_4_8, cis_ubuntu2404_rule_6_2_4_9, cis_ubuntu2404_rule_6_2_4_10)
 cis_ubuntu2404_audit_tools:
+  - /usr/sbin/auditctl
+  - /usr/sbin/aureport
+  - /usr/sbin/ausearch
+  - /usr/sbin/autrace
+  - /usr/sbin/auditd
+  - /usr/sbin/augenrules
   - /sbin/auditctl
   - /sbin/aureport
   - /sbin/ausearch
@@ -587,6 +592,11 @@ cis_ubuntu2404_audit_tools:
   - /sbin/auditd
   - /sbin/augenrules
 cis_ubuntu2410_audit_tools:
+  - /usr/sbin/auditctl
+  - /usr/sbin/aureport
+  - /usr/sbin/ausearch
+  - /usr/sbin/auditd
+  - /usr/sbin/augenrules
   - /sbin/auditctl
   - /sbin/aureport
   - /sbin/ausearch

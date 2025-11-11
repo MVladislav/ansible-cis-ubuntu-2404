@@ -18,7 +18,11 @@
 [security]
 
 [xdmcp]
+{% if cis_ubuntu2404_rule_1_7_10 is defined and cis_ubuntu2404_rule_1_7_10 and cis_ubuntu2404_allow_gdm_gui is defined and cis_ubuntu2404_allow_gdm_gui %}
+Enable=false
+{% else %}
 #Enable=false
+{% endif %}
 
 [chooser]
 
