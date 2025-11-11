@@ -545,7 +545,7 @@ cis_ubuntu2404_journald_runtime_max_use: 256M
 cis_ubuntu2404_journald_runtime_keep_free: 512M
 cis_ubuntu2404_journald_max_file_sec: 1month
 
-# preferred method for capturing logs (cis_ubuntu2404_rule_6_1_2_2, cis_ubuntu2404_rule_6_1_3_3)
+# preferred method for capturing logs (cis_ubuntu2404_rule_6_1_*)
 cis_ubuntu2404_preferred_capturing_log_method: journald # journald | rsyslog
 
 # systemd-journal-upload remote upload (cis_ubuntu2404_rule_6_1_2_1_1-4)
@@ -859,3 +859,8 @@ cis_ubuntu2404_section5_mode_sudo: "0400"
 cis_ubuntu2404_section5_owner_pam: root
 cis_ubuntu2404_section5_group_pam: root
 cis_ubuntu2404_section5_mode_pam: "0644"
+
+# SECTION6
+cis_ubuntu2404_section6_mode_dir_default: "0700"
+cis_ubuntu2404_section6_mode_dir: "0755"
+cis_ubuntu2404_section6_mode_file: "0640"

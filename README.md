@@ -704,11 +704,11 @@ For more specific description see the **CIS pdf** file on **page 18**.
 | 5.4.3.1   | Ensure nologin is not listed in /etc/shells (Automated)                                          | 🟢  |     |     |
 | 5.4.3.2   | Ensure default user shell timeout is configured (Automated)                                      | 🟢  |     |     |
 | 5.4.3.3   | Ensure default user umask is configured (Automated)                                              | 🟢  |     |     |
-| 6         | **Logging and Auditing**                                                                         |     | 🟡  |     |
-| 6.1       | **System Logging**                                                                               |     | 🟡  |     |
-| 6.1.1     | **Configure systemd-journald service**                                                           |     | 🟡  |     |
+| 6         | **Logging and Auditing**                                                                         | 🟢  |     |     |
+| 6.1       | **System Logging**                                                                               | 🟢  |     |     |
+| 6.1.1     | **Configure systemd-journald service**                                                           | 🟢  |     |     |
 | 6.1.1.1   | Ensure journald service is enabled and active (Automated)                                        | 🟢  |     |     |
-| 6.1.1.2   | Ensure journald log file access is configured (Manual)                                           |     | 🟡  |     |
+| 6.1.1.2   | Ensure journald log file access is configured (Manual)                                           | 🟢  |     |     |
 | 6.1.1.3   | Ensure journald log file rotation is configured (Manual)                                         | 🟢  |     |     |
 | 6.1.1.4   | Ensure only one logging system is in use (Automated)                                             | 🟢  |     |     |
 | 6.1.2     | **Configure journald**                                                                           | 🟢  |     |     |
