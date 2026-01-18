@@ -47,7 +47,7 @@
   block:
     - name: "SECTION3 | 3.1.2 | Ensure wireless interfaces are disabled | gather wireless .ko files"
       ansible.builtin.find:
-        paths: "/lib/modules/{{ ansible_kernel }}/kernel/drivers/net/wireless"
+        paths: "/lib/modules/{{ ansible_facts['kernel'] }}/kernel/drivers/net/wireless"
         patterns: "*.ko"
         file_type: file
         recurse: true
@@ -153,7 +153,7 @@
       community.general.modprobe:
         name: dccp
         state: absent
-      when: ansible_virtualization_type != "docker"
+      when: ansible_facts['virtualization_type'] != "docker"
 
 - name: "SECTION3 | 3.2.2 | Ensure tipc kernel module is not available"
   when:
@@ -182,7 +182,7 @@
       community.general.modprobe:
         name: tipc
         state: absent
-      when: ansible_virtualization_type != "docker"
+      when: ansible_facts['virtualization_type'] != "docker"
 
 - name: "SECTION3 | 3.2.3 | Ensure rds kernel module is not available"
   when:
@@ -211,7 +211,7 @@
       community.general.modprobe:
         name: rds
         state: absent
-      when: ansible_virtualization_type != "docker"
+      when: ansible_facts['virtualization_type'] != "docker"
 
 - name: "SECTION3 | 3.2.4 | Ensure sctp kernel module is not available"
   when:
@@ -240,7 +240,7 @@
       community.general.modprobe:
         name: sctp
         state: absent
-      when: ansible_virtualization_type != "docker"
+      when: ansible_facts['virtualization_type'] != "docker"
 
 # ------------------------------------------------------------------------------
 

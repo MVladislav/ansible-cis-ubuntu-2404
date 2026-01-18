@@ -458,7 +458,7 @@
     state: started
   when:
     - cis_ubuntu2404_rule_6_2_1_2
-    - ansible_virtualization_type != "docker"
+    - ansible_facts['virtualization_type'] != "docker"
   tags:
     - rule_6_2_1
     - server_l2
@@ -1110,7 +1110,7 @@
   loop: >
     {{
       cis_ubuntu2410_audit_tools
-      if ansible_distribution_version is version_compare('24.10', '>=')
+      if ansible_facts['distribution_version'] is version_compare('24.10', '>=')
       else cis_ubuntu2404_audit_tools
       | flatten(levels=1)
     }}
@@ -1128,7 +1128,7 @@
   loop: >
     {{
       cis_ubuntu2410_audit_tools
-      if ansible_distribution_version is version_compare('24.10', '>=')
+      if ansible_facts['distribution_version'] is version_compare('24.10', '>=')
       else cis_ubuntu2404_audit_tools
       | flatten(levels=1)
     }}
@@ -1146,7 +1146,7 @@
   loop: >
     {{
       cis_ubuntu2410_audit_tools
-      if ansible_distribution_version is version_compare('24.10', '>=')
+      if ansible_facts['distribution_version'] is version_compare('24.10', '>=')
       else cis_ubuntu2404_audit_tools
       | flatten(levels=1)
     }}
@@ -1217,7 +1217,7 @@
     - cis_ubuntu2404_install_aide | bool
     - cis_ubuntu2404_config_aide | bool
     - cis_ubuntu2404_rule_6_3_2
-    - ansible_virtualization_type != "docker"
+    - ansible_facts['virtualization_type'] != "docker"
   tags:
     - rule_6_3
     - server_l1

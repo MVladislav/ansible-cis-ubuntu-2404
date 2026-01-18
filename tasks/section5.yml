@@ -612,7 +612,7 @@
     validate: "visudo -cf %s"
   when:
     - cis_ubuntu2404_rule_5_2_3
-    - ansible_distribution_version is version_compare('25.04', '<=')
+    - ansible_facts['distribution_version'] is version_compare('25.04', '<=')
   tags:
     - rule_5_2
     - server_l1
