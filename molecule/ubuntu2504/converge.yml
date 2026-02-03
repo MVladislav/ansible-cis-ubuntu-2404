@@ -23,8 +23,8 @@
     cis_ubuntu2404_rule_5_1_24_ssh_user: root
     cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "ssh-ed25519 aXdhc2hlcmVleGFtcGxlMTMzNwo= example"
     # -------------------------
-    cis_ubuntu2404_rule_1_3_1_3: false # AppArmor complain mode
-    cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode
+    cis_ubuntu2404_rule_1_3_1_3: true # AppArmor complain mode
+    cis_ubuntu2404_rule_1_3_1_4: true # AppArmor enforce mode
     # cis_ubuntu2404_apparmor_update_to_complain_profiles:
     #   - firefox
     # cis_ubuntu2404_apparmor_update_to_enforce_profiles:

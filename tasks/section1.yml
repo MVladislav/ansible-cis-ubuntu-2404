@@ -213,13 +213,6 @@
           line: "install squashfs /bin/false"
         - reg: "{{ cis_ubuntu2404_regex_base_search }}blacklist squashfs$"
           line: "blacklist squashfs"
-    # NOTE: Module squashfs is builtin, and can not be removed complete
-    # - name: >
-    #     SECTION1 | 1.1.1.7 | Ensure squashfs kernel module is not available | unloading module
-    #   community.general.modprobe:
-    #     name: squashfs
-    #     state: absent
-    #   when: ansible_facts['virtualization_type'] != "docker"
 
 - name: "SECTION1 | 1.1.1.8 | Ensure udf kernel module is not available"
   when:
@@ -572,8 +565,7 @@
   ansible.builtin.apt:
     name:
       - apparmor
-      # 'apparmor-utils' installs 'aa-enforce'
-      - apparmor-utils
+      - apparmor-utils # installs 'aa-enforce'
     state: present
     force_apt_get: true
   notify: Restart apparmor
@@ -692,6 +684,7 @@
         set -o pipefail &&
           if [ '{{ cis_ubuntu2404_bootloader_password }}' == 'random' ]; then
             PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c12)
+            echo "$PASSWORD" > /root/.back-bootloader-password
           else
             PASSWORD='{{ cis_ubuntu2404_bootloader_password }}'
           fi
@@ -704,8 +697,11 @@
       ansible.builtin.copy:
         dest: /etc/grub.d/00_password
         content: |
+          #!/bin/sh
+          cat << 'EOF'
           set superusers="root"
           password_pbkdf2 root {{ cis_ubuntu2404_grub_bootloader_password.stdout }}
+          EOF
         owner: "{{ cis_ubuntu2404_section1_owner_default }}"
         group: "{{ cis_ubuntu2404_section1_group_default }}"
         mode: "{{ cis_ubuntu2404_section1_mode_etc_grub_d }}"

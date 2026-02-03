@@ -131,7 +131,7 @@ cis_ubuntu2404_rule_6_2_4_0: true
 ```yaml
 # Ensure all AppArmor Profiles are complain
 # NOTE: will perform Profiles into complain mode
-cis_ubuntu2404_rule_1_3_1_3: false
+cis_ubuntu2404_rule_1_3_1_3: true
 # Ensure all AppArmor Profiles are enforcing
 # NOTE: will perform Profiles into enforcing mode
 cis_ubuntu2404_rule_1_3_1_4: false
@@ -333,7 +333,7 @@ Example usage can be found also [here](https://github.com/MVladislav/ansible-env
       cis_ubuntu2404_rule_5_1_24_ssh_user: "{{ ansible_user }}"
       cis_ubuntu2404_rule_5_1_24_ssh_pub_key: "<ADD_PUB_KEY>"
       # -------------------------
-      cis_ubuntu2404_rule_1_3_1_3: false # AppArmor complain mode
+      cis_ubuntu2404_rule_1_3_1_3: true # AppArmor complain mode
       cis_ubuntu2404_rule_1_3_1_4: false # AppArmor enforce mode
       # -------------------------
       cis_ubuntu2404_set_boot_pass: false # bootloader password (disabled)

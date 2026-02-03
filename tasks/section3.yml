@@ -41,7 +41,7 @@
   when:
     - cis_ubuntu2404_rule_3_1_2
   tags:
-    - rule_3_1_2
+    - rule_3_1
     - server_l1
     - workstation_l2
   block:
