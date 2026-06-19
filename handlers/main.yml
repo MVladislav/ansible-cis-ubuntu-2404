@@ -146,7 +146,7 @@
 - name: "HANDLER | 1.4.2 | fix permissions after generate new grub config handler"
   become: true
   ansible.builtin.file:
-    path: "/boot/grub/grub.cfg"
+    path: "{{ cis_grub_cfg.stat.path }}"
     owner: root
     group: root
     mode: "0400"

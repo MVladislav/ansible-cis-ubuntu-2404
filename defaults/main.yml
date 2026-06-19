@@ -403,6 +403,9 @@ cis_ubuntu2404_fs_ignored: # these filesystem won't be disabled
   - ext3
   - ext4
 
+# general path for sysctl conf file
+cis_ubuntu2404_sysctl_file_path: /etc/sysctl.d/99-sysctl.conf
+
 cis_ubuntu2404_rule_1_1_2_1_tmp_size: 2G
 # cis_ubuntu2404_rule_1_1_2_2_shm_size: 2G
 
@@ -410,6 +413,8 @@ cis_ubuntu2404_rule_1_1_2_1_tmp_size: 2G
 cis_ubuntu2404_bootloader_password: random # pragma: allowlist secret
 # grub default file path (cis_ubuntu2404_rule_1_3_1_2)
 cis_ubuntu2404_default_grub_file: /etc/default/grub
+# (cis_ubuntu2404_rule_1_5_2)
+cis_ubuntu2404_sysctl_kernel_yama_ptrace_scope: 1
 # gdm banner message (cis_ubuntu2404_rule_1_7_2)
 cis_ubuntu2404_warning_banner: Authorized users only. All activity may be monitored and reported.
 # (cis_ubuntu2404_rule_1_7_4)
@@ -423,8 +428,6 @@ cis_ubuntu2404_time_synchronization_time_server:
     config: iburst
   - uri: ntp.ubuntu.com # time-a-g.nist.gov time-b-g.nist.gov time-c-g.nist.gov
     config: iburst
-# general path for sysctl conf file
-cis_ubuntu2404_sysctl_file_path: /etc/sysctl.d/99-sysctl.conf
 # in file (chrony.conf.j2) and (cis_ubuntu2404_rule_2_3_3_2)
 cis_ubuntu2404_chrony_owner: _chrony
 cis_ubuntu2404_chrony_group: _chrony

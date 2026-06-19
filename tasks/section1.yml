@@ -761,7 +761,7 @@
 - name: "SECTION1 | 1.5.2 | Ensure ptrace_scope is restricted"
   ansible.posix.sysctl:
     name: kernel.yama.ptrace_scope
-    value: "1"
+    value: "{{ cis_ubuntu2404_sysctl_kernel_yama_ptrace_scope }}"
     sysctl_file: "{{ cis_ubuntu2404_sysctl_file_path }}"
     sysctl_set: true
     state: present
