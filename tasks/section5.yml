@@ -483,6 +483,7 @@
     - rule_5_1
     - server_l1
     - workstation_l1
+    - molecule-idempotence-notest
   block:
     - name: "SECTION5 | 5.1.23 | EXTENDED | Ensure SSH additional variables are configured | Remove all ListenAddress lines"
       ansible.builtin.lineinfile:
