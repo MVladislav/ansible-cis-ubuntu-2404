@@ -1,12 +1,12 @@
 ---
 blank_issues_enabled: false
 contact_links:
-  - name: 🤔 I have a question or need support
+  - name: 💬 I have a question or need support
     url: https://github.com/MVladislav/ansible-cis-ubuntu-2404/discussions
-    about: This issue tracker is for bugs only, not general support questions. Please refer to our Discussions.
+    about: This issue tracker is for bugs only. Please use Discussions for general questions and support.
   - name: 🚀 Feature Request
     url: https://github.com/MVladislav/ansible-cis-ubuntu-2404/discussions/new?category=feature-requests
-    about: Remember to search for existing feature requests and "up-vote" any you like.
+    about: Feature requests are tracked in Discussions. Please search for existing requests and up-vote any you like.
   - name: 🔒 Report a Security Vulnerability
     url: https://github.com/MVladislav/ansible-cis-ubuntu-2404/security/advisories
-    about: If you believe you have found a security vulnerability, please report it here.
+    about: If you believe you have found a security vulnerability, please report it via GitHub Security Advisories.

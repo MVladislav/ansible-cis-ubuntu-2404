@@ -1,3 +1,11 @@
+# This template only takes effect if the matching discussion category exists on GitHub.
+# Category setup is done on the GitHub website, not in this repository:
+#   1. Open the repository "Discussions" tab.
+#   2. In the left sidebar, click the pencil icon next to "Categories".
+#   3. Click "New category", name it "Feature Requests", use the 🚀 emoji,
+#      format "Open-ended discussion", and click "Create".
+# The category slug must be "feature-requests" (generated from the category name)
+# so it matches this file name.
 ---
 title: "[Feature Request] "
 labels: ["enhancement"]

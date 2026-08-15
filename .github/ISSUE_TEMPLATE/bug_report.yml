@@ -7,7 +7,9 @@ body:
       value: |
         This issue form is for reporting bugs only!
 
-        If you have a feature or enhancement request, please use the feature request issue template
+        For feature requests and general questions, please use
+        [Discussions](https://github.com/MVladislav/ansible-cis-ubuntu-2404/discussions)
+        instead.
   - type: textarea
     validations:
       required: true
