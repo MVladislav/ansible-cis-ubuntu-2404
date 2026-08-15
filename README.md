@@ -406,7 +406,7 @@ are defined by **tags** in the tasks by:
 - workstation_l1
 - workstation_l2
 
-For more specific description see the **CIS pdf** file on **page 18**.
+For more specific description see the **CIS pdf** file, section **Profile Definitions**.
 
 ## CIS - List of Recommendations
 
