@@ -8,7 +8,6 @@
 
 !.gitattributes
 !.gitignore
-!.gitempty
 
 !CONTRIBUTING.md
 !LICENCE
@@ -16,6 +15,8 @@
 
 !README.md
 
+!.editorconfig
+!.git-blame-ignore-revs
 !.pre-commit-config.yaml
 !.prettierrc.yml
 !.yamllint

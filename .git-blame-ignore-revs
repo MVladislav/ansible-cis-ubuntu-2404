@@ -1,0 +1,6 @@
+# Commits to ignore in `git blame` (mass refactors / reordering)
+# Add lines as: <full-sha> # <short description>
+
+0692e48b82b49befe805307453ed7a126f2d5f61 # refactor: reorder for changed index and add 1.1.1.10 (alpha)
+e1aa7208cbe70f403d01db65bc57832ff07c0e9d # refactor: enhance and align rules
+8cb9fde95a108096d71ccd7662262be3e177f23c # refactor: enhance section1
