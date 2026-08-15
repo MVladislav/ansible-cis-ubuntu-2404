@@ -28,9 +28,13 @@
       "rangeStrategy": "pin",
       "groupName": "Ansible collections",
       "automerge": false
+    },
+    {
+      "addLabels": ["pip"],
+      "matchManagers": ["pip_requirements"],
+      "rangeStrategy": "pin",
+      "groupName": "Python dependencies",
+      "automerge": false
     }
-  ],
-  "pre-commit": {
-    "enabled": true
-  }
+  ]
 }
