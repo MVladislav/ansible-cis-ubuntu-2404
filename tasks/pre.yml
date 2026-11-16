@@ -155,3 +155,13 @@
   check_mode: false
   tags:
     - pre
+
+# ------------------------------------------------------------------------------
+
+- name: "PRE | network | set default interface fact (ipv4 preferred, fallback ipv6)"
+  ansible.builtin.set_fact:
+    cis_ubuntu2404_default_interface: >-
+      {{ (ansible_facts['default_ipv4'] | default({})).get('interface')
+         or (ansible_facts['default_ipv6'] | default({})).get('interface') }}
+  tags:
+    - pre
